@@ -97,6 +97,11 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 relative">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl ai-float"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl ai-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-purple-600/10 rounded-full blur-3xl ai-pulse"></div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -123,7 +128,7 @@ const Skills = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className="card-glass p-6"
+              className="card-ai p-6"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className={`p-3 rounded-lg ${category.bgColor}`}>
@@ -183,7 +188,7 @@ const Skills = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.1, y: -5 }}
-              className="card-glass p-6 text-center group cursor-pointer"
+              className="card-ai p-6 text-center group cursor-pointer"
             >
               <div className={`w-12 h-12 mx-auto mb-4 p-3 rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors duration-300`}>
                 <tech.icon className={`w-full h-full ${tech.color}`} />
@@ -192,41 +197,6 @@ const Skills = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Additional Skills */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="card-glass p-8 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-6">
-              Additional <span className="text-gradient-ai">Expertise</span>
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-3">Soft Skills</h4>
-                <ul className="space-y-2 text-gray-300">
-                  <li>• Project Management & Leadership</li>
-                  <li>• Problem Solving & Critical Thinking</li>
-                  <li>• Team Collaboration & Communication</li>
-                  <li>• Agile/Scrum Methodology</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-lg font-semibold text-white mb-3">Tools & Platforms</h4>
-                <ul className="space-y-2 text-gray-300">
-                  <li>• Git & GitHub</li>
-                  <li>• VS Code & JetBrains IDEs</li>
-                  <li>• Postman & API Testing</li>
-                  <li>• Figma & Design Tools</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

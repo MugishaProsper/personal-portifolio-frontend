@@ -8,19 +8,19 @@ const Footer = () => {
     {
       name: "GitHub",
       icon: Github,
-      href: "https://github.com/yourusername",
+      href: "https://github.com/MugishaProsper",
       color: "hover:text-ai-primary"
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      href: "https://linkedin.com/in/yourusername",
+      href: "https://www.linkedin.com/in/mugisha-prosper-7a5981297",
       color: "hover:text-ai-secondary"
     },
     {
       name: "Instagram",
       icon: Instagram,
-      href: "https://instagram.com/yourusername",
+      href: "https://instagram.com/p.o.l.o_10",
       color: "hover:text-ai-accent"
     }
   ];
@@ -33,6 +33,27 @@ const Footer = () => {
     { name: "Contact", href: "#contact" }
   ];
 
+  const contactInfo = [
+    {
+      title: "Email",
+      value: "nelsonprox92@gmail.com",
+      href: "mailto:nelsonprox92@gmail.com",
+      color: "text-ai-primary"
+    },
+    {
+      title: "Phone",
+      value: "+250 798 615 286",
+      href: "tel:+250798615286",
+      color: "text-ai-secondary"
+    },
+    {
+      title: "Location",
+      value: "Kigali, Rwanda",
+      href: "#",
+      color: "text-ai-accent"
+    }
+  ];
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId.replace('#', ''));
     if (element) {
@@ -41,7 +62,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-dark border-t border-white/10">
+    <footer className="relative bg-dark">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -116,11 +137,12 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <div className="space-y-3 text-gray-300">
-              <p>polo@example.com</p>
-              <p>+1 (555) 123-4567</p>
-              <p>San Francisco, CA</p>
-            </div>
+            { contactInfo.map((contact) => (
+              <div className="space-y-3">
+                <p>{ contact.title }</p>
+                <p>{ contact.value }</p>
+              </div>
+            ))}
           </motion.div>
         </div>
 

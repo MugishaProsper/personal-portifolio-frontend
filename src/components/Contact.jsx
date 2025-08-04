@@ -44,21 +44,21 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "polo@example.com",
-      href: "mailto:polo@example.com",
+      value: "nelsonprox92@gmail.com",
+      href: "mailto:nelsonprox92@gmail.com",
       color: "text-ai-primary"
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567",
+      value: "+250 798 615 286",
+      href: "tel:+250798615286",
       color: "text-ai-secondary"
     },
     {
       icon: MapPin,
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Kigali, Rwanda",
       href: "#",
       color: "text-ai-accent"
     }
@@ -68,19 +68,19 @@ const Contact = () => {
     {
       name: "GitHub",
       icon: Github,
-      href: "https://github.com/yourusername",
+      href: "https://github.com/MugishaProsper",
       color: "hover:text-ai-primary"
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
-      href: "https://linkedin.com/in/yourusername",
+      href: "https://linkedin.com/in/mugisha-prosper",
       color: "hover:text-ai-secondary"
     },
     {
       name: "Instagram",
       icon: Instagram,
-      href: "https://instagram.com/yourusername",
+      href: "https://instagram.com/p.o.l.o_10",
       color: "hover:text-ai-accent"
     }
   ];
@@ -98,12 +98,12 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Get In <span className="text-gradient-ai">Touch</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto p-2">
             Ready to collaborate on your next project? Let's discuss how we can bring your ideas to life with AI-powered solutions.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-2">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -112,7 +112,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="space-y-4"
           >
-            <div className="card-glass p-6">
+            <div className="card-ai p-6">
               <h3 className="text-xl font-bold text-white mb-4">Let's Connect</h3>
               <p className="text-gray-300 mb-6 text-sm">
                 I'm always interested in new opportunities and exciting projects.
@@ -145,8 +145,7 @@ const Contact = () => {
 
               {/* Social Links */}
               <div className="mt-6 pt-4 border-t border-white/10">
-                <h4 className="text-white font-semibold mb-3 text-sm">Follow Me</h4>
-                <div className="flex gap-3">
+                <div className="flex gap-3 flex-row justify-center gap-4">
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={social.name}
@@ -167,18 +166,6 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-
-            {/* Availability Status */}
-            <div className="card-glass p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-ai-success rounded-full animate-pulse"></div>
-                <span className="text-white font-semibold text-sm">Available for new projects</span>
-              </div>
-              <p className="text-gray-300 text-xs">
-                I'm currently accepting new freelance opportunities and full-time positions.
-                Let's discuss how we can work together!
-              </p>
-            </div>
           </motion.div>
 
           {/* Contact Form */}
@@ -188,7 +175,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="card-glass p-6">
+            <div className="card-ai p-6">
               <h3 className="text-xl font-bold text-white mb-4">Send Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">

@@ -116,18 +116,18 @@ const Hero = () => {
         >
           <div className="card-ai p-6 text-center">
             <Code className="w-8 h-8 text-ai-primary mx-auto mb-3" />
-            <h3 className="text-white font-semibold mb-2">Full-Stack Development</h3>
-            <p className="text-gray-300 text-sm">React, Node.js, Python, AI/ML</p>
+            <h3 className="text-white font-semibold mb-2">Backend Development</h3>
+            <p className="text-gray-300 text-sm">Node.js, FastAPI, Django, Golang</p>
           </div>
           <div className="card-ai p-6 text-center">
             <Brain className="w-8 h-8 text-ai-secondary mx-auto mb-3" />
             <h3 className="text-white font-semibold mb-2">AI & Machine Learning</h3>
-            <p className="text-gray-300 text-sm">TensorFlow, OpenAI, Computer Vision</p>
+            <p className="text-gray-300 text-sm">TensorFlow, OpenAI, Computer Vision, PyTorch</p>
           </div>
           <div className="card-ai p-6 text-center">
             <Zap className="w-8 h-8 text-ai-accent mx-auto mb-3" />
             <h3 className="text-white font-semibold mb-2">Modern Technologies</h3>
-            <p className="text-gray-300 text-sm">Cloud, DevOps, Microservices</p>
+            <p className="text-gray-300 text-sm">Cloud Computing, DevOps, Microservices</p>
           </div>
         </motion.div>
       </div>

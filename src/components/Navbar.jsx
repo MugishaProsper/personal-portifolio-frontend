@@ -36,19 +36,19 @@ const Navbar = () => {
         {
             name: 'GitHub',
             icon: Github,
-            href: 'https://github.com/yourusername',
+            href: 'https://github.com/MugishaProsper',
             color: 'hover:text-ai-primary'
         },
         {
             name: 'LinkedIn',
             icon: Linkedin,
-            href: 'https://linkedin.com/in/yourusername',
+            href: 'https://www.linkedin.com/in/mugisha-prosper-7a5981297',
             color: 'hover:text-ai-secondary'
         },
         {
             name: 'Instagram',
             icon: Instagram,
-            href: 'https://instagram.com/yourusername',
+            href: 'https://instagram.com/p.o.l.o_10',
             color: 'hover:text-ai-accent'
         }
     ];
@@ -75,7 +75,9 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         className="flex-shrink-0"
                     >
-                        <h3 className="text-2xl font-bold text-gradient-ai">Polo</h3>
+                        <h3 className="text-2xl font-bold text-gradient-ai">
+                            <img src="/logo.svg" alt="logo" className="w-25" />
+                        </h3>
                     </motion.div>
 
                     {/* Desktop Navigation */}
@@ -87,7 +89,7 @@ const Navbar = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => scrollToSection(item.href)}
-                                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
                                 >
                                     {item.name}
                                 </motion.button>
@@ -105,7 +107,7 @@ const Navbar = () => {
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.1, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
-                                className={`text-gray-300 ${social.color} transition-colors duration-200 p-2 rounded-lg hover:bg-white/10`}
+                                className={`text-gray-300 ${social.color} transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer`}
                             >
                                 <social.icon className="w-5 h-5" />
                             </motion.a>

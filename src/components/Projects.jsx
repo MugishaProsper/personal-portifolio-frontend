@@ -1,195 +1,22 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, Code, Brain, Globe, Smartphone, Heart, MessageCircleDashed, X, Send, Calendar, User, ThumbsUp } from "lucide-react";
+import { ExternalLink, Code, Brain, Globe, Smartphone, MessageCircleDashed, X, Send, Calendar, ThumbsUp, Loader2, Info, DatabaseZap } from "lucide-react";
 import { useState } from "react";
+import useProjects from "../hooks/useProjects";
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
   const [commentText, setCommentText] = useState("");
 
-  const projects = [
-    {
-      _id: "688cd969829bba9eb0e9f316",
-      user: "688bbe1f99ca254be72f6cec",
-      projectName: "AI-Powered Chat Assistant",
-      projectUrl: "https://ai-chat-assistant.vercel.app",
-      sampleImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=500&h=300&fit=crop",
-      projectDescription: "An intelligent chatbot built with OpenAI GPT-4, featuring natural language processing and context-aware responses. The system handles complex conversations and provides personalized assistance to users.",
-      categories: ["AI/ML", "Web Development"],
-      technologies: ["React", "Node.js", "OpenAI API", "Socket.io", "MongoDB"],
-      projectStatus: "COMPLETED",
-      createdAt: "2024-12-01T15:12:41.127Z",
-      updatedAt: "2024-12-15T21:13:54.998Z",
-      statistics: {
-        likes: 127,
-        comments_count: 8,
-        comments: [
-          {
-            _id: "comment1",
-            user: "John Doe",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face",
-            text: "Amazing AI integration! The response time is incredible.",
-            createdAt: "2024-12-10T10:30:00.000Z"
-          },
-          {
-            _id: "comment2",
-            user: "Sarah Chen",
-            avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face",
-            text: "The natural language processing is really impressive. Great work!",
-            createdAt: "2024-12-12T14:20:00.000Z"
-          }
-        ]
-      },
-      icon: Brain,
-      color: "text-ai-primary"
-    },
-    {
-      _id: "688cd969829bba9eb0e9f317",
-      user: "688bbe1f99ca254be72f6cec",
-      projectName: "Smart E-commerce Platform",
-      projectUrl: "https://smart-ecommerce.vercel.app",
-      sampleImage: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&h=300&fit=crop",
-      projectDescription: "A modern e-commerce solution with AI-powered product recommendations and personalized user experience. Features include real-time inventory management, secure payment processing, and advanced analytics dashboard.",
-      categories: ["Full-Stack", "E-commerce"],
-      technologies: ["Next.js", "Python", "TensorFlow", "MongoDB", "Stripe API"],
-      projectStatus: "COMPLETED",
-      createdAt: "2024-11-15T09:30:00.000Z",
-      updatedAt: "2024-12-01T16:45:00.000Z",
-      statistics: {
-        likes: 89,
-        comments_count: 12,
-        comments: [
-          {
-            _id: "comment3",
-            user: "Mike Johnson",
-            avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
-            text: "The AI recommendations are spot on! Increased our sales by 35%.",
-            createdAt: "2024-11-25T11:15:00.000Z"
-          }
-        ]
-      },
-      icon: Globe,
-      color: "text-ai-secondary"
-    },
-    {
-      _id: "688cd969829bba9eb0e9f318",
-      user: "688bbe1f99ca254be72f6cec",
-      projectName: "Computer Vision App",
-      projectUrl: "https://cv-detection.vercel.app",
-      sampleImage: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=500&h=300&fit=crop",
-      projectDescription: "Real-time object detection and image classification using deep learning models and computer vision. The app can identify objects, faces, and text in images with high accuracy.",
-      categories: ["AI/ML", "Computer Vision"],
-      technologies: ["Python", "OpenCV", "TensorFlow", "Flask", "React"],
-      projectStatus: "COMPLETED",
-      createdAt: "2024-10-20T14:20:00.000Z",
-      updatedAt: "2024-11-30T12:10:00.000Z",
-      statistics: {
-        likes: 156,
-        comments_count: 15,
-        comments: [
-          {
-            _id: "comment4",
-            user: "Emily Watson",
-            avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face",
-            text: "Incredible accuracy in object detection! The real-time processing is impressive.",
-            createdAt: "2024-11-05T09:45:00.000Z"
-          }
-        ]
-      },
-      icon: Brain,
-      color: "text-ai-accent"
-    },
-    {
-      _id: "688cd969829bba9eb0e9f319",
-      user: "688bbe1f99ca254be72f6cec",
-      projectName: "Mobile AI Assistant",
-      projectUrl: "https://mobile-ai-assistant.vercel.app",
-      sampleImage: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=500&h=300&fit=crop",
-      projectDescription: "Cross-platform mobile app with voice recognition and AI-powered task automation. Features include voice commands, smart scheduling, and integration with various APIs.",
-      categories: ["Mobile", "AI/ML"],
-      technologies: ["React Native", "Python", "Speech Recognition", "Firebase", "Node.js"],
-      projectStatus: "IN_PROGRESS",
-      createdAt: "2024-12-05T08:15:00.000Z",
-      updatedAt: "2024-12-20T18:30:00.000Z",
-      statistics: {
-        likes: 67,
-        comments_count: 5,
-        comments: [
-          {
-            _id: "comment5",
-            user: "Alex Kim",
-            avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=40&h=40&fit=crop&crop=face",
-            text: "Voice recognition works perfectly! Can't wait for the full release.",
-            createdAt: "2024-12-15T13:20:00.000Z"
-          }
-        ]
-      },
-      icon: Smartphone,
-      color: "text-ai-success"
-    },
-    {
-      _id: "688cd969829bba9eb0e9f320",
-      user: "688bbe1f99ca254be72f6cec",
-      projectName: "Data Analytics Dashboard",
-      projectUrl: "https://analytics-dashboard.vercel.app",
-      sampleImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
-      projectDescription: "Interactive dashboard for real-time data visualization and AI-powered insights generation. Provides comprehensive analytics with customizable charts and predictive modeling.",
-      categories: ["Data", "Web Development"],
-      technologies: ["React", "D3.js", "Python", "PostgreSQL", "TensorFlow"],
-      projectStatus: "COMPLETED",
-      createdAt: "2024-09-10T11:45:00.000Z",
-      updatedAt: "2024-12-10T15:20:00.000Z",
-      statistics: {
-        likes: 203,
-        comments_count: 18,
-        comments: [
-          {
-            _id: "comment6",
-            user: "David Wilson",
-            avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop&crop=face",
-            text: "The predictive analytics feature is game-changing for our business decisions.",
-            createdAt: "2024-10-15T16:30:00.000Z"
-          }
-        ]
-      },
-      icon: Code,
-      color: "text-ai-warning"
-    },
-    {
-      _id: "688cd969829bba9eb0e9f321",
-      user: "688bbe1f99ca254be72f6cec",
-      projectName: "AI Content Generator",
-      projectUrl: "https://content-generator.vercel.app",
-      sampleImage: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=300&fit=crop",
-      projectDescription: "Automated content creation tool using natural language generation and machine learning. Generates high-quality articles, social media posts, and marketing copy.",
-      categories: ["AI/ML", "Content Creation"],
-      technologies: ["Python", "Transformers", "FastAPI", "Redis", "React"],
-      projectStatus: "COMPLETED",
-      createdAt: "2024-08-25T13:30:00.000Z",
-      updatedAt: "2024-12-05T10:15:00.000Z",
-      statistics: {
-        likes: 178,
-        comments_count: 22,
-        comments: [
-          {
-            _id: "comment7",
-            user: "Lisa Thompson",
-            avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=40&h=40&fit=crop&crop=face",
-            text: "This tool has saved us hours of content creation time. The quality is outstanding!",
-            createdAt: "2024-09-20T14:45:00.000Z"
-          }
-        ]
-      },
-      icon: Brain,
-      color: "text-ai-primary"
-    }
-  ];
+  // Use the hook to fetch real data
+  const { loading, error, projects } = useProjects();
 
-  const categories = ["All", "AI/ML", "Full-Stack", "Mobile", "Data", "E-commerce", "Computer Vision", "Content Creation", "Web Development"];
+  // Get unique categories from the API data
+  const categories = ["All", ...new Set(projects.flatMap(project => project.categories || []))];
 
   const filteredProjects = selectedCategory === "All"
     ? projects
-    : projects.filter(project => project.categories.includes(selectedCategory));
+    : projects.filter(project => project.categories && project.categories.includes(selectedCategory));
 
   const closePopover = () => {
     setSelectedProject(null);
@@ -200,7 +27,7 @@ const Projects = () => {
     if (commentText.trim()) {
       const newComment = {
         _id: `comment_${Date.now()}`,
-        user: "You",
+        user: "Morgan Rogers Jr.",
         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
         text: commentText,
         createdAt: new Date().toISOString()
@@ -210,8 +37,8 @@ const Projects = () => {
         ...prev,
         statistics: {
           ...prev.statistics,
-          comments: [newComment, ...prev.statistics.comments],
-          comments_count: prev.statistics.comments_count + 1
+          comments: [newComment, ...(prev.statistics?.comments || [])],
+          comments_count: (prev.statistics?.comments_count || 0) + 1
         }
       }));
       setCommentText("");
@@ -232,12 +59,93 @@ const Projects = () => {
         return "text-green-400";
       case "IN_PROGRESS":
         return "text-yellow-400";
-      case "PLANNED":
+      case "PLANNING":
         return "text-blue-400";
       default:
         return "text-gray-400";
     }
   };
+
+  const getProjectIcon = (categories) => {
+    if (!categories || categories.length === 0) return Code;
+
+    const category = categories[0];
+    const iconMap = {
+      "AI/ML": Brain,
+      "Computer Vision": Brain,
+      "Mobile": Smartphone,
+      "Web Development": Globe,
+      "Full-Stack": Code,
+      "E-commerce": Globe,
+      "Data": Code,
+      "Content Creation": Brain,
+      "Blockchain" : DatabaseZap
+    };
+    return iconMap[category] || Code;
+  };
+
+  const getProjectColor = (categories) => {
+    if (!categories || categories.length === 0) return "text-ai-primary";
+
+    const category = categories[0];
+    const colorMap = {
+      "AI/ML": "text-gradient-ai",
+      "Computer Vision": "text-gradient-ai",
+      "Mobile": "text-gradient-ai",
+      "Web Development": "text-gradient-ai",
+      "Full-Stack": "text-gradient-ai",
+      "E-commerce": "text-gradient-ai",
+      "Data": "text-gradient-ai",
+      "Content Creation": "text-gradient-ai",
+      "Blockchain" : "text-gradient-ai"
+    };
+    return colorMap[category] || "text-gradient-ai";
+  };
+
+  // Loading state
+  if (loading) {
+    return (
+      <section id="projects" className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="flex items-center justify-center mb-8">
+              <Loader2 className="w-8 h-8 text-ai-primary animate-spin" />
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Loading <span className="text-gradient-ai">Projects</span>
+            </h2>
+            <p className="text-xl text-gray-300">
+              Fetching the latest projects from the backend...
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <section id="projects" className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Error Loading <span className="text-gradient-ai">Projects</span>
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Unable to load projects. Please try again later.
+            </p>
+            <button
+              onClick={() => window.location.reload()}
+              className="btn-ai px-6 py-3 text-base font-semibold"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="py-20 relative">
@@ -282,102 +190,131 @@ const Projects = () => {
 
         {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project._id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className="group cursor-pointer"
-              onClick={() => setSelectedProject(project)}
-            >
-              <div className="card-ai overflow-hidden h-full">
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={project.sampleImage}
-                    alt={project.projectName}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-sm font-medium ${project.color}`}>
-                      <project.icon className="w-4 h-4" />
-                      {project.categories[0]}
+          {filteredProjects.map((project, index) => {
+            const ProjectIcon = getProjectIcon(project.categories);
+            const projectColor = getProjectColor(project.categories);
+
+            return (
+              <motion.div
+                key={project._id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10 }}
+                className="group cursor-pointer"
+                onClick={() => setSelectedProject(project)}
+              >
+                <div className="card-ai overflow-hidden h-full">
+                  {/* Project Image */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={project.sampleImage}
+                      alt={project.projectName}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-sm font-medium ${projectColor}`}>
+                        <ProjectIcon className="w-4 h-4" />
+                        {project.categories && project.categories[0]}
+                      </div>
+                    </div>
+                    <div className="absolute top-4 right-4">
+                      <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full glass text-xs font-medium ${getStatusColor(project.projectStatus)}`}>
+                        {project.projectStatus}
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute top-4 right-4">
-                    <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full glass text-xs font-medium ${getStatusColor(project.projectStatus)}`}>
-                      {project.projectStatus}
+
+                  {/* Project Content */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gradient-ai transition-colors duration-300">
+                      {project.projectName}
+                    </h3>
+                    <p className="text-gray-300 mb-4 line-clamp-3">
+                      {project.projectDescription}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies && project.technologies.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2 py-1 bg-white/10 rounded text-xs text-gray-300"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {project.technologies && project.technologies.length > 3 && (
+                        <span className="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">
+                          +{project.technologies.length - 3} more
+                        </span>
+                      )}
                     </div>
-                  </div>
-                </div>
 
-                {/* Project Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gradient-ai transition-colors duration-300">
-                    {project.projectName}
-                  </h3>
-                  <p className="text-gray-300 mb-4 line-clamp-3">
-                    {project.projectDescription}
-                  </p>
+                    {/* Statistics */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-4 text-sm text-gray-400">
+                        <div className="flex items-center gap-1">
+                          <ThumbsUp className="w-4 h-4" />
+                          {project.statistics?.likes || 0}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <MessageCircleDashed className="w-4 h-4" />
+                          {project.statistics?.comments_count || 0}
+                        </div>
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {formatDate(project.createdAt)}
+                      </div>
+                    </div>
 
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 bg-white/10 rounded text-xs text-gray-300"
+                    {/* Project Links */}
+                    <div className="flex gap-3">
+                      <motion.a
+                        href={project.projectUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-primary rounded-lg text-white text-sm font-medium hover:shadow-lg transition-all duration-300"
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">
-                        +{project.technologies.length - 3} more
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Statistics */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4 text-sm text-gray-400">
-                      <div className="flex items-center gap-1">
-                        <ThumbsUp className="w-4 h-4" />
-                        {project.statistics.likes}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <MessageCircleDashed className="w-4 h-4" />
-                        {project.statistics.comments_count}
-                      </div>
+                        <ExternalLink className="w-4 h-4" />
+                        Visit Project
+                      </motion.a>
                     </div>
-                    <div className="text-xs text-gray-500">
-                      {formatDate(project.createdAt)}
-                    </div>
-                  </div>
-
-                  {/* Project Links */}
-                  <div className="flex gap-3">
-                    <motion.a
-                      href={project.projectUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-primary rounded-lg text-white text-sm font-medium hover:shadow-lg transition-all duration-300"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Visit Project
-                    </motion.a>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* Empty State */}
+        {filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mt-12"
+          >
+            <div className="card-ai p-8 max-w-md mx-auto">
+              <h3 className="text-xl font-bold text-white mb-3">
+                No projects found
+              </h3>
+              <p className="text-gray-300 text-sm mb-4">
+                No projects match the selected category. Try selecting a different category or check back later.
+              </p>
+              <button
+                onClick={() => setSelectedCategory("All")}
+                className="btn-ai px-6 py-3 text-sm font-semibold"
+              >
+                View All Projects
+              </button>
+            </div>
+          </motion.div>
+        )}
 
         {/* View More Button */}
         <motion.div
@@ -431,10 +368,13 @@ const Projects = () => {
                     <div className="flex-1 text-center sm:text-left">
                       <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">{selectedProject.projectName}</h2>
                       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 mb-3">
-                        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-sm font-medium ${selectedProject.color}`}>
-                          <selectedProject.icon className="w-4 h-4" />
-                          <span className="hidden sm:inline">{selectedProject.categories.join(", ")}</span>
-                          <span className="sm:hidden">{selectedProject.categories[0]}</span>
+                        <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-sm font-medium ${getProjectColor(selectedProject.categories)}`}>
+                          {(() => {
+                            const ProjectIcon = getProjectIcon(selectedProject.categories);
+                            return <ProjectIcon className="w-4 h-4" />;
+                          })()}
+                          <span className="hidden sm:inline">{selectedProject.categories?.join(", ")}</span>
+                          <span className="sm:hidden">{selectedProject.categories?.[0]}</span>
                         </div>
                         <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full glass text-sm font-medium ${getStatusColor(selectedProject.projectStatus)}`}>
                           {selectedProject.projectStatus}
@@ -465,7 +405,7 @@ const Projects = () => {
                   <div className="mb-4 sm:mb-6">
                     <h3 className="text-white font-semibold text-base sm:text-lg mb-2 sm:mb-3">Technologies Used</h3>
                     <div className="flex flex-wrap gap-2">
-                      {selectedProject.technologies.map((tech) => (
+                      {selectedProject.technologies?.map((tech) => (
                         <span
                           key={tech}
                           className="px-2 sm:px-3 py-1 bg-white/10 rounded-lg text-xs sm:text-sm text-gray-300"
@@ -493,11 +433,16 @@ const Projects = () => {
                 {/* Comments Section */}
                 <div className="border-t border-white/10 pt-4 sm:pt-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
-                    <h3 className="text-white font-semibold text-base sm:text-lg">Comments ({selectedProject.statistics.comments_count})</h3>
+                    <div className="flex flex-row items-center justify-center space-x-2">
+                      <h3 className="text-white font-semibold text-base sm:text-lg">Comments ({selectedProject.statistics?.comments_count || 0})</h3>
+                      <div className="flex flex-row items-center justify-between gap-1 text-xs text-gray-600">
+                        <Info className="w-4 h-4 text-gray-600"/> Your comment will be anonymous
+                      </div>
+                    </div>
                     <div className="flex items-center gap-4 text-sm text-gray-400">
                       <div className="flex items-center gap-1">
                         <ThumbsUp className="w-4 h-4" />
-                        {selectedProject.statistics.likes} likes
+                        {selectedProject.statistics?.likes || 0} likes
                       </div>
                     </div>
                   </div>
@@ -535,7 +480,7 @@ const Projects = () => {
 
                   {/* Comments List */}
                   <div className="space-y-3 sm:space-y-4">
-                    {selectedProject.statistics.comments.map((comment) => (
+                    {selectedProject.statistics?.comments?.map((comment) => (
                       <div key={comment._id} className="flex gap-2 sm:gap-3">
                         <img
                           src={comment.avatar}

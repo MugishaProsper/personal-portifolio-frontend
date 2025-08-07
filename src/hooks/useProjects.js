@@ -13,7 +13,7 @@ const useProjects = () => {
             setLoading(true)
             try {
                 const res = await api.get("/projects");
-                const { projects } = res.data;
+                const projects = res.data.projects;
                 setProjects(projects)
             } catch (error) {
                 setError(error);
@@ -24,5 +24,14 @@ const useProjects = () => {
         }
         fetchProjects()
     }, []);
-    return { loading, error, projects, likes }
-}
+    const likeProject = async (projectId) => {
+        try {
+            await api.post(`/projects/${projectId}`);
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+    return { loading, error, projects, likeProject }
+};
+
+export default useProjects

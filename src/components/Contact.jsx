@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from "lucide-react";
 import { useState } from "react";
+import useMessage from "../hooks/useMessage";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { message, error, loading, sendMessage } = useMessage();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,21 +26,23 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    try {
+      await sendMessage(formData);
+      toast.success(message);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast.error(error.response?.data?.message || "An error occurred");
+    } finally {
+      setIsSubmitting(false);
+    }
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
     setIsSubmitting(false);
-
-    // Show success message (you can integrate with toast notifications)
-    alert("Message sent successfully!");
   };
 
   const contactInfo = [
@@ -87,6 +92,12 @@ const Contact = () => {
 
   return (
     <section id="contact" className="min-h-screen relative flex items-center">
+      {/* Background AI Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl ai-float"></div>
+        <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl ai-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-purple-600/10 rounded-full blur-3xl ai-pulse"></div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
           initial={{ opacity: 0, y: 50 }}

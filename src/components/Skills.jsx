@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import {
   Code, Brain, Database, Cloud, Smartphone, Globe,
-  Zap, Shield, Palette, Cpu, Network, Lock
+  Zap, Shield, Cpu, Network, Lock,
+  CloudUpload,
+  Code2,
+  DatabaseZap
 } from "lucide-react";
 
 const Skills = () => {
@@ -9,7 +12,7 @@ const Skills = () => {
     {
       title: "Frontend Development",
       icon: Code,
-      color: "text-ai-primary",
+      color: "text-gradient-ai",
       bgColor: "bg-ai-primary/10",
       skills: [
         { name: "React/Next.js", level: 95 },
@@ -21,67 +24,67 @@ const Skills = () => {
     {
       title: "AI & Machine Learning",
       icon: Brain,
-      color: "text-ai-secondary",
+      color: "text-gradient-ai",
       bgColor: "bg-ai-secondary/10",
       skills: [
-        { name: "TensorFlow", level: 88 },
+        { name: "TensorFlow", level: 90 },
         { name: "PyTorch", level: 85 },
         { name: "OpenAI API", level: 92 },
         { name: "Computer Vision", level: 80 }
       ]
     },
     {
+      title: "Blockchain & Cryptocurrency",
+      icon: DatabaseZap,
+      color: "text-gradient-ai",
+      bgColor: "bg-ai-secondary/10",
+      skills: [
+        { name: "Ethereum Solidity", level: 90 },
+        { name: "Solana", level: 85 },
+        { name: "Binance SC", level: 92 },
+        { name: "Bitcoin Integration", level: 85 }
+      ]
+    },
+    {
       title: "Backend Development",
       icon: Database,
-      color: "text-ai-accent",
+      color: "text-gradient-ai",
       bgColor: "bg-ai-accent/10",
       skills: [
         { name: "Node.js", level: 90 },
         { name: "Python", level: 88 },
         { name: "Express.js", level: 92 },
-        { name: "FastAPI", level: 85 }
+        { name: "FastAPI", level: 85 },
+        { name: "Golang", level: 70 }
       ]
     },
     {
       title: "Cloud & DevOps",
-      icon: Cloud,
-      color: "text-ai-success",
+      icon: CloudUpload,
+      color: "text-gradient-ai",
       bgColor: "bg-ai-success/10",
       skills: [
-        { name: "AWS", level: 85 },
         { name: "Docker", level: 88 },
+        { name: "Github & GitLab CI/CD", level: 82 },
         { name: "Kubernetes", level: 75 },
-        { name: "CI/CD", level: 82 }
-      ]
-    },
-    {
-      title: "Mobile Development",
-      icon: Smartphone,
-      color: "text-ai-warning",
-      bgColor: "bg-ai-warning/10",
-      skills: [
-        { name: "React Native", level: 85 },
-        { name: "Flutter", level: 80 },
-        { name: "iOS Development", level: 75 },
-        { name: "Android Development", level: 78 }
       ]
     },
     {
       title: "Data & Analytics",
       icon: Globe,
-      color: "text-ai-error",
+      color: "text-gradient-ai",
       bgColor: "bg-ai-error/10",
       skills: [
         { name: "PostgreSQL", level: 88 },
         { name: "MongoDB", level: 85 },
-        { name: "Data Visualization", level: 82 },
+        { name: "InfluxDB", level: 80 },
         { name: "Big Data", level: 75 }
       ]
     }
   ];
 
   const technologies = [
-    { name: "React", icon: Code, color: "text-ai-primary" },
+    { name: "React", icon: Code2, color: "text-ai-primary" },
     { name: "Node.js", icon: Zap, color: "text-ai-success" },
     { name: "Python", icon: Brain, color: "text-ai-secondary" },
     { name: "AWS", icon: Cloud, color: "text-ai-warning" },

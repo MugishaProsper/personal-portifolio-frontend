@@ -32,14 +32,13 @@ const About = () => {
   ];
 
   const skills = [
-    { name: "React/Next.js", level: 95, color: "bg-ai-primary" },
-    { name: "Node.js/Python", level: 90, color: "bg-ai-secondary" },
-    { name: "AI/ML", level: 85, color: "bg-ai-accent" },
-    { name: "Cloud/AWS", level: 80, color: "bg-ai-success" },
-    { name: "DevOps", level: 75, color: "bg-ai-warning" }
+    { name: "React/Next.js", level: 95, color: "bg-gradient-ai" },
+    { name: "Node.js/Python", level: 90, color: "bg-gradient-ai" },
+    { name: "AI/ML", level: 85, color: "bg-gradient-ai" },
+    { name : "Blockchain", level : 90, color : "bg-gradient-ai" },
+    { name: "Cloud/AWS", level: 80, color: "bg-gradient-ai" },
+    { name: "DevOps", level: 75, color: "bg-gradient-ai" }
   ];
-
-
   return (
     <section id="about" className="min-h-screen relative flex items-center justify-center">
       {/* Background AI Elements */}
@@ -115,7 +114,7 @@ const About = () => {
               <h3 className="text-xl font-bold text-white mb-4">My Journey</h3>
               <div className="space-y-3 text-gray-300 text-sm">
                 <p>
-                  I'm a passionate developer with over 5 years of experience in full-stack development and AI/ML technologies.
+                  I'm a passionate developer with over {currentYear - 2023} years of experience in full-stack development and AI/ML technologies.
                   My journey began with a fascination for how artificial intelligence can solve real-world problems.
                 </p>
                 <p>

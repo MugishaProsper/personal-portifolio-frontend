@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Heart } from "lucide-react";
+import { Github, Linkedin, Instagram, Heart, Goal } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -62,7 +62,13 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-dark">
+    <footer className="relative">
+      {/* Background AI Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl ai-float"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl ai-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-indigo-400/10 to-purple-600/10 rounded-full blur-3xl ai-pulse"></div>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -137,10 +143,10 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h4 className="text-white font-semibold mb-4">Contact</h4>
-            { contactInfo.map((contact) => (
+            {contactInfo.map((contact) => (
               <div className="space-y-3">
-                <p>{ contact.title }</p>
-                <p>{ contact.value }</p>
+                <p>{contact.title}</p>
+                <p>{contact.value}</p>
               </div>
             ))}
           </motion.div>
@@ -156,12 +162,11 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-300 text-sm">
-              © {currentYear} Polo. All rights reserved.
+              © {currentYear} Mugisha Prosper. All rights reserved.
             </p>
             <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-ai-error animate-pulse" />
-              <span>and AI</span>
+              <span>Made by</span>
+              <span className="text-gradient-ai">Mugisha Prosper</span>
             </div>
           </div>
         </motion.div>

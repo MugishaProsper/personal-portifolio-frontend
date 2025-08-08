@@ -35,12 +35,6 @@ const Footer = () => {
 
   const contactInfo = [
     {
-      title: "Email",
-      value: "nelsonprox92@gmail.com",
-      href: "mailto:nelsonprox92@gmail.com",
-      color: "text-ai-primary"
-    },
-    {
       title: "Phone",
       value: "+250 798 615 286",
       href: "tel:+250798615286",
@@ -126,7 +120,7 @@ const Footer = () => {
                 >
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-gray-300 hover:text-white transition-colors duration-200"
+                    className="text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer"
                   >
                     {link.name}
                   </button>
@@ -143,12 +137,13 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <ul className="space-y-3">
             {contactInfo.map((contact) => (
-              <div className="space-y-3">
-                <p>{contact.title}</p>
-                <p>{contact.value}</p>
+              <div className="">
+                <p className="text-gray-300 hover:text-white transition-colors duration-200">{contact.value}</p>
               </div>
             ))}
+            </ul>
           </motion.div>
         </div>
 

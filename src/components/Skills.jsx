@@ -10,18 +10,6 @@ import {
 const Skills = () => {
   const skillCategories = [
     {
-      title: "Frontend Development",
-      icon: Code,
-      color: "text-gradient-ai",
-      bgColor: "bg-ai-primary/10",
-      skills: [
-        { name: "React/Next.js", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "Tailwind CSS", level: 95 },
-        { name: "Vue.js", level: 85 }
-      ]
-    },
-    {
       title: "AI & Machine Learning",
       icon: Brain,
       color: "text-gradient-ai",
@@ -39,9 +27,9 @@ const Skills = () => {
       color: "text-gradient-ai",
       bgColor: "bg-ai-secondary/10",
       skills: [
-        { name: "Ethereum Solidity", level: 90 },
-        { name: "Solana", level: 85 },
+        { name: "Ethereum Solidity", level: 95 },
         { name: "Binance SC", level: 92 },
+        { name: "Solana", level: 85 },
         { name: "Bitcoin Integration", level: 85 }
       ]
     },
@@ -51,10 +39,10 @@ const Skills = () => {
       color: "text-gradient-ai",
       bgColor: "bg-ai-accent/10",
       skills: [
-        { name: "Node.js", level: 90 },
-        { name: "Python", level: 88 },
-        { name: "Express.js", level: 92 },
-        { name: "FastAPI", level: 85 },
+        { name: "NodeJS & ExpressJS", level: 99 },
+        { name: "FastAPI", level: 95 },
+        { name: "Flask", level: 92 },
+        { name: "Spring Boot", level: 88 },
         { name: "Golang", level: 70 }
       ]
     },
@@ -64,8 +52,8 @@ const Skills = () => {
       color: "text-gradient-ai",
       bgColor: "bg-ai-success/10",
       skills: [
-        { name: "Docker", level: 88 },
-        { name: "Github & GitLab CI/CD", level: 82 },
+        { name: "Github & Gitlab CI/CD", level: 88 },
+        { name: "Docker", level: 82 },
         { name: "Kubernetes", level: 75 },
       ]
     },
@@ -75,10 +63,10 @@ const Skills = () => {
       color: "text-gradient-ai",
       bgColor: "bg-ai-error/10",
       skills: [
-        { name: "PostgreSQL", level: 88 },
-        { name: "MongoDB", level: 85 },
+        { name: "MongoDB", level: 88 },
+        { name: "PostgreSQL", level: 85 },
         { name: "InfluxDB", level: 80 },
-        { name: "Big Data", level: 75 }
+        { name: "MySQL", level: 75 }
       ]
     }
   ];

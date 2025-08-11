@@ -3,7 +3,7 @@ import { Code, Brain, Zap, Blocks, ChartNetwork, DatabaseZap } from "lucide-reac
 
 const Hero = () => {
   return (
-    <section className="min-h-screen relative flex items-center justify-center overflow-hidden w-full pt-10">
+    <section className="min-h-screen relative flex items-center justify-center overflow-hidden w-full pt-15">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-dark opacity-20"></div>
 
@@ -110,7 +110,7 @@ const Hero = () => {
           <div className="card-ai p-6 text-center">
             <Code className="w-8 h-8 text-ai-primary mx-auto mb-3" />
             <h3 className="text-white font-semibold mb-2">Backend Development</h3>
-            <p className="text-gray-300 text-sm">Node.js, FastAPI, Django, Golang</p>
+            <p className="text-gray-300 text-sm">NodeJS, FastAPI, Flask, Go</p>
           </div>
           <div className="card-ai p-6 text-center">
             <Brain className="w-8 h-8 text-ai-secondary mx-auto mb-3" />

@@ -36,19 +36,19 @@ const Navbar = () => {
         {
             name: 'GitHub',
             icon: Github,
-            href: 'https://github.com/MugishaProsper',
+            href: 'https://github.com/yourusername',
             color: 'hover:text-ai-primary'
         },
         {
             name: 'LinkedIn',
             icon: Linkedin,
-            href: 'https://www.linkedin.com/in/mugisha-prosper-7a5981297',
+            href: 'https://linkedin.com/in/yourusername',
             color: 'hover:text-ai-secondary'
         },
         {
             name: 'Instagram',
             icon: Instagram,
-            href: 'https://instagram.com/p.o.l.o_10',
+            href: 'https://instagram.com/yourusername',
             color: 'hover:text-ai-accent'
         }
     ];
@@ -89,7 +89,7 @@ const Navbar = () => {
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                     onClick={() => scrollToSection(item.href)}
-                                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 cursor-pointer"
+                                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                                 >
                                     {item.name}
                                 </motion.button>
@@ -107,7 +107,7 @@ const Navbar = () => {
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.1, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
-                                className={`text-gray-300 ${social.color} transition-colors duration-200 p-2 rounded-lg hover:bg-white/10 cursor-pointer`}
+                                className={`text-gray-300 ${social.color} transition-colors duration-200 p-2 rounded-lg hover:bg-white/10`}
                             >
                                 <social.icon className="w-5 h-5" />
                             </motion.a>

@@ -1,9 +1,16 @@
 import { motion } from "framer-motion";
-import { Code, Brain, Zap, Blocks, ChartNetwork, DatabaseZap } from "lucide-react";
+import { ArrowDown, Sparkles, Code, Brain, Zap } from "lucide-react";
 
 const Hero = () => {
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="min-h-screen relative flex items-center justify-center overflow-hidden w-full pt-15">
+    <section className="min-h-screen relative flex items-center justify-center overflow-hidden w-full pt-10">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-dark opacity-20"></div>
 
@@ -105,22 +112,17 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-6 p-4 pt-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 pt-8"
         >
           <div className="card-ai p-6 text-center">
             <Code className="w-8 h-8 text-ai-primary mx-auto mb-3" />
             <h3 className="text-white font-semibold mb-2">Backend Development</h3>
-            <p className="text-gray-300 text-sm">NodeJS, FastAPI, Flask, Go</p>
+            <p className="text-gray-300 text-sm">Node.js, FastAPI, Django, Golang</p>
           </div>
           <div className="card-ai p-6 text-center">
             <Brain className="w-8 h-8 text-ai-secondary mx-auto mb-3" />
             <h3 className="text-white font-semibold mb-2">AI & Machine Learning</h3>
             <p className="text-gray-300 text-sm">TensorFlow, OpenAI, Computer Vision, PyTorch</p>
-          </div>
-          <div className="card-ai p-6 text-center">
-            <DatabaseZap className="w-8 h-8 text-ai-accent mx-auto mb-3" />
-            <h3 className="text-white font-semibold mb-2">Blockchain & Cryptocurrency</h3>
-            <p className="text-gray-300 text-sm">Bitcoin, Ethereum, Solana</p>
           </div>
           <div className="card-ai p-6 text-center">
             <Zap className="w-8 h-8 text-ai-accent mx-auto mb-3" />

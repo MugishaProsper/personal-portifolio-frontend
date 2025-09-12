@@ -1,8 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from "lucide-react";
 import { useState } from "react";
-import useMessage from "../hooks/useMessage";
-import toast from "react-hot-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +11,6 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { message, error, loading, sendMessage } = useMessage();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,23 +23,21 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    try {
-      await sendMessage(formData);
-      toast.success(message);
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
-    } catch (error) {
-      console.error("Error sending message:", error);
-      toast.error(error.response?.data?.message || "An error occurred");
-    } finally {
-      setIsSubmitting(false);
-    }
 
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Reset form
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
     setIsSubmitting(false);
+
+    // Show success message (you can integrate with toast notifications)
+    alert("Message sent successfully!");
   };
 
   const contactInfo = [

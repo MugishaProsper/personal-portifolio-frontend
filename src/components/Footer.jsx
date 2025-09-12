@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram } from "lucide-react";
+import { Github, Linkedin, Instagram, Heart } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,6 +34,12 @@ const Footer = () => {
   ];
 
   const contactInfo = [
+    {
+      title: "Email",
+      value: "nelsonprox92@gmail.com",
+      href: "mailto:nelsonprox92@gmail.com",
+      color: "text-ai-primary"
+    },
     {
       title: "Phone",
       value: "+250 798 615 286",
@@ -120,7 +126,7 @@ const Footer = () => {
                 >
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer"
+                    className="text-gray-300 hover:text-white transition-colors duration-200"
                   >
                     {link.name}
                   </button>
@@ -137,13 +143,12 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <ul className="space-y-3">
             {contactInfo.map((contact) => (
-              <div className="">
-                <p className="text-gray-300 hover:text-white transition-colors duration-200">{contact.value}</p>
+              <div className="space-y-3">
+                <p>{contact.title}</p>
+                <p>{contact.value}</p>
               </div>
             ))}
-            </ul>
           </motion.div>
         </div>
 
@@ -157,11 +162,12 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-300 text-sm">
-              © {currentYear} Mugisha Prosper. All rights reserved.
+              © {currentYear} Polo. All rights reserved.
             </p>
             <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <span>Made by</span>
-              <span className="text-gradient-ai">Mugisha Prosper</span>
+              <span>Made with</span>
+              <Heart className="w-4 h-4 text-ai-error animate-pulse" />
+              <span>and AI</span>
             </div>
           </div>
         </motion.div>

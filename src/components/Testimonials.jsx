@@ -337,6 +337,10 @@ const Testimonials = () => {
                     <Calendar className="w-4 h-4" />
                     <span>Testimonial Date: {formatDate(selectedTestimonial.createdAt)}</span>
                   </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-400">
+                    <Calendar className="w-4 h-4" />
+                    <span>Last Updated: {formatDate(selectedTestimonial.updatedAt)}</span>
+                  </div>
                 </div>
 
                 {/* Full Content */}

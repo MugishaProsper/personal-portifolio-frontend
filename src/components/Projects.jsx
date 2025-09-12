@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Code, Brain, Globe, Smartphone, MessageCircleDashed, X, Send, Calendar, ThumbsUp, Loader2, Info, DatabaseZap } from "lucide-react";
+import { ExternalLink, Code, Brain, Globe, Smartphone, MessageCircleDashed, X, Send, Calendar, ThumbsUp, Loader2 } from "lucide-react";
 import { useState } from "react";
 import useProjects from "../hooks/useProjects";
 
@@ -7,6 +7,7 @@ const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
   const [commentText, setCommentText] = useState("");
+  const [activeImageIdx, setActiveImageIdx] = useState(0);
 
   // Use the hook to fetch real data
   const { loading, error, projects } = useProjects();
@@ -27,7 +28,7 @@ const Projects = () => {
     if (commentText.trim()) {
       const newComment = {
         _id: `comment_${Date.now()}`,
-        user: "Morgan Rogers Jr.",
+        user: "You",
         avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
         text: commentText,
         createdAt: new Date().toISOString()
@@ -59,7 +60,7 @@ const Projects = () => {
         return "text-green-400";
       case "IN_PROGRESS":
         return "text-yellow-400";
-      case "PLANNING":
+      case "PLANNED":
         return "text-blue-400";
       default:
         return "text-gray-400";
@@ -78,8 +79,7 @@ const Projects = () => {
       "Full-Stack": Code,
       "E-commerce": Globe,
       "Data": Code,
-      "Content Creation": Brain,
-      "Blockchain" : DatabaseZap
+      "Content Creation": Brain
     };
     return iconMap[category] || Code;
   };
@@ -89,17 +89,16 @@ const Projects = () => {
 
     const category = categories[0];
     const colorMap = {
-      "AI/ML": "text-gradient-ai",
-      "Computer Vision": "text-gradient-ai",
-      "Mobile": "text-gradient-ai",
-      "Web Development": "text-gradient-ai",
-      "Full-Stack": "text-gradient-ai",
-      "E-commerce": "text-gradient-ai",
-      "Data": "text-gradient-ai",
-      "Content Creation": "text-gradient-ai",
-      "Blockchain" : "text-gradient-ai"
+      "AI/ML": "text-ai-primary",
+      "Computer Vision": "text-ai-accent",
+      "Mobile": "text-ai-success",
+      "Web Development": "text-ai-secondary",
+      "Full-Stack": "text-ai-warning",
+      "E-commerce": "text-ai-secondary",
+      "Data": "text-ai-success",
+      "Content Creation": "text-ai-primary"
     };
-    return colorMap[category] || "text-gradient-ai";
+    return colorMap[category] || "text-ai-primary";
   };
 
   // Loading state
@@ -203,7 +202,7 @@ const Projects = () => {
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
                 className="group cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                onClick={() => { setSelectedProject(project); setActiveImageIdx(0); }}
               >
                 <div className="card-ai overflow-hidden h-full">
                   {/* Project Image */}
@@ -359,12 +358,37 @@ const Projects = () => {
               <div className="p-4 sm:p-6 lg:p-8">
                 {/* Project Header */}
                 <div className="mb-6 sm:mb-8">
-                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
-                    <img
-                      src={selectedProject.sampleImage}
-                      alt={selectedProject.projectName}
-                      className="w-24 h-24 sm:w-32 sm:h-32 rounded-lg object-cover mx-auto sm:mx-0"
-                    />
+                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-4 sm:mb-6 w-full">
+                    <div className="w-full sm:w-1/3">
+                      {(() => {
+                        const images = (selectedProject.sampleImages && selectedProject.sampleImages.length > 0)
+                          ? selectedProject.sampleImages
+                          : [selectedProject.sampleImage].filter(Boolean);
+                        const activeSrc = images[activeImageIdx] || images[0] || "";
+                        return (
+                          <>
+                            <img
+                              src={activeSrc}
+                              alt={selectedProject.projectName}
+                              className="w-full h-56 sm:h-64 rounded-lg object-cover"
+                            />
+                            {images.length > 1 && (
+                              <div className="mt-3 grid grid-cols-5 gap-2">
+                                {images.map((img, idx) => (
+                                  <button
+                                    key={idx}
+                                    onClick={() => setActiveImageIdx(idx)}
+                                    className={`rounded-md overflow-hidden border ${idx === activeImageIdx ? 'border-ai-primary' : 'border-white/10'}`}
+                                  >
+                                    <img src={img} alt={`thumb-${idx}`} className="w-full h-14 object-cover" />
+                                  </button>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        );
+                      })()}
+                    </div>
                     <div className="flex-1 text-center sm:text-left">
                       <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-2">{selectedProject.projectName}</h2>
                       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 mb-3">
@@ -433,12 +457,7 @@ const Projects = () => {
                 {/* Comments Section */}
                 <div className="border-t border-white/10 pt-4 sm:pt-6">
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
-                    <div className="flex flex-row items-center justify-center space-x-2">
-                      <h3 className="text-white font-semibold text-base sm:text-lg">Comments ({selectedProject.statistics?.comments_count || 0})</h3>
-                      <div className="flex flex-row items-center justify-between gap-1 text-xs text-gray-600">
-                        <Info className="w-4 h-4 text-gray-600"/> Your comment will be anonymous
-                      </div>
-                    </div>
+                    <h3 className="text-white font-semibold text-base sm:text-lg">Comments ({selectedProject.statistics?.comments_count || 0})</h3>
                     <div className="flex items-center gap-4 text-sm text-gray-400">
                       <div className="flex items-center gap-1">
                         <ThumbsUp className="w-4 h-4" />

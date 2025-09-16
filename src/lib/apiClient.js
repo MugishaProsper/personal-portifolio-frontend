@@ -86,8 +86,6 @@ apiClient.interceptors.request.use(
         _t: Date.now()
       };
     }
-    
-    console.log(`🚀 API Request: ${config.method?.toUpperCase()} ${config.url}`);
     return config;
   },
   (error) => {

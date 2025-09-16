@@ -6,48 +6,48 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://mugisha-prosper.vercel.app/</loc>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://mugishaprosper-seven.vercel.app/</loc>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- About Section -->
   <url>
-    <loc>https://mugisha-prosper.vercel.app/#about</loc>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://mugishaprosper-seven.vercel.app/#about</loc>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Projects Section -->
   <url>
-    <loc>https://mugisha-prosper.vercel.app/#projects</loc>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://mugishaprosper-seven.vercel.app/#projects</loc>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <!-- Skills Section -->
   <url>
-    <loc>https://mugisha-prosper.vercel.app/#skills</loc>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://mugishaprosper-seven.vercel.app/#skills</loc>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Testimonials Section -->
   <url>
-    <loc>https://mugisha-prosper.vercel.app/#testimonials</loc>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://mugishaprosper-seven.vercel.app/#testimonials</loc>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Contact Section -->
   <url>
-    <loc>https://mugisha-prosper.vercel.app/#contact</loc>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://mugishaprosper-seven.vercel.app/#contact</loc>
+    <lastmod>2025-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

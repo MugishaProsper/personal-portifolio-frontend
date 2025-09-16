@@ -19,6 +19,8 @@ const useMessage = () => {
     setLoading(true);
     setError(null);
     setSuccess(false);
+
+    console.log(messageData)
     
     try {
       const response = await apiMethods.post("/messages", {

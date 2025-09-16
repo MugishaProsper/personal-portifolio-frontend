@@ -20,29 +20,23 @@ const API_CACHE_PATTERNS = [
 ];
 
 // Install event - cache static assets
-self.addEventListener('install', (event) => {
-  console.log('[SW] Installing service worker');
-  
+self.addEventListener('install', (event) => {  
   event.waitUntil(
     caches.open(STATIC_CACHE_NAME)
       .then((cache) => {
-        console.log('[SW] Caching static assets');
         return cache.addAll(STATIC_ASSETS);
       })
       .then(() => {
-        console.log('[SW] Static assets cached successfully');
         return self.skipWaiting(); // Activate immediately
       })
       .catch((error) => {
-        console.error('[SW] Failed to cache static assets:', error);
+        throw new Error(error)
       })
   );
 });
 
 // Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating service worker');
-  
+self.addEventListener('activate', (event) => {  
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
@@ -55,13 +49,11 @@ self.addEventListener('activate', (event) => {
                      cacheName.startsWith('polo-');
             })
             .map((cacheName) => {
-              console.log('[SW] Deleting old cache:', cacheName);
               return caches.delete(cacheName);
             })
         );
       })
       .then(() => {
-        console.log('[SW] Service worker activated');
         return self.clients.claim(); // Take control immediately
       })
   );
@@ -115,11 +107,8 @@ async function cacheFirstStrategy(request, cacheName) {
   try {
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
-      console.log('[SW] Serving from cache:', request.url);
       return cachedResponse;
     }
-    
-    console.log('[SW] Not in cache, fetching:', request.url);
     const networkResponse = await fetch(request);
     
     if (networkResponse.ok) {
@@ -128,9 +117,7 @@ async function cacheFirstStrategy(request, cacheName) {
     }
     
     return networkResponse;
-  } catch (error) {
-    console.error('[SW] Cache first strategy failed:', error);
-    
+  } catch (error) {    
     // Return offline fallback if available
     if (request.destination === 'document') {
       const offlineResponse = await caches.match('/');
@@ -146,7 +133,6 @@ async function cacheFirstStrategy(request, cacheName) {
 // Network first strategy (for API calls and dynamic content)
 async function networkFirstStrategy(request, cacheName) {
   try {
-    console.log('[SW] Fetching from network:', request.url);
     const networkResponse = await fetch(request);
     
     if (networkResponse.ok) {
@@ -155,16 +141,11 @@ async function networkFirstStrategy(request, cacheName) {
     }
     
     return networkResponse;
-  } catch (error) {
-    console.log('[SW] Network failed, trying cache:', request.url);
-    
+  } catch (error) {    
     const cachedResponse = await caches.match(request);
     if (cachedResponse) {
-      console.log('[SW] Serving stale content from cache');
       return cachedResponse;
     }
-    
-    console.error('[SW] Network first strategy failed:', error);
     throw error;
   }
 }
@@ -174,9 +155,7 @@ async function handleNavigationRequest(request) {
   try {
     const networkResponse = await fetch(request);
     return networkResponse;
-  } catch (error) {
-    console.log('[SW] Navigation request failed, serving cached index');
-    
+  } catch (error) {    
     const cachedResponse = await caches.match('/');
     if (cachedResponse) {
       return cachedResponse;
@@ -187,9 +166,7 @@ async function handleNavigationRequest(request) {
 }
 
 // Background sync for offline actions (if needed)
-self.addEventListener('sync', (event) => {
-  console.log('[SW] Background sync triggered:', event.tag);
-  
+self.addEventListener('sync', (event) => {  
   if (event.tag === 'background-sync') {
     event.waitUntil(doBackgroundSync());
   }
@@ -201,9 +178,7 @@ async function doBackgroundSync() {
 }
 
 // Push notifications (if needed)
-self.addEventListener('push', (event) => {
-  console.log('[SW] Push notification received');
-  
+self.addEventListener('push', (event) => {  
   if (event.data) {
     const data = event.data.json();
     const options = {
@@ -223,22 +198,16 @@ self.addEventListener('push', (event) => {
 });
 
 // Handle notification clicks
-self.addEventListener('notificationclick', (event) => {
-  console.log('[SW] Notification clicked');
-  
+self.addEventListener('notificationclick', (event) => {  
   event.notification.close();
-  
   const url = event.notification.data?.url || '/';
-  
   event.waitUntil(
     clients.openWindow(url)
   );
 });
 
 // Message handling (for communication with main thread)
-self.addEventListener('message', (event) => {
-  console.log('[SW] Message received:', event.data);
-  
+self.addEventListener('message', (event) => { 
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }

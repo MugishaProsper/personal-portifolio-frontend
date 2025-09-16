@@ -1,7 +1,7 @@
 {
-  "name": "MUGISHA Prosper - AI Developer Portfolio",
+  "name": "MUGISHA Prosper - AI Engineer Portfolio",
   "short_name": "Polo Portfolio",
-  "description": "Professional portfolio of MUGISHA Prosper, AI Developer and Full-Stack Engineer specializing in machine learning and intelligent web applications",
+  "description": "Professional portfolio of MUGISHA Prosper, AI Engineer and Backend Engineer specializing in machine learning and intelligent web applications",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -9,7 +9,7 @@
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
-  "categories": ["portfolio", "developer", "ai", "technology"],
+  "categories": ["portfolio", "engineer", "ai", "technology", "backend"],
   "icons": [
     {
       "src": "/logo.svg",

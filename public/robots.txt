@@ -1,5 +1,5 @@
 # Robots.txt for MUGISHA Prosper Portfolio
-# https://mugisha-prosper.vercel.app/robots.txt
+# https://mugishaprosper-seven.vercel.app/robots.txt
 
 User-agent: *
 Allow: /
@@ -17,7 +17,7 @@ Allow: /#contact
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://mugisha-prosper.vercel.app/sitemap.xml
+Sitemap: https://mugishaprosper-seven.vercel.app/sitemap.xml
 
 # Crawl delay (optional - be respectful to crawlers)
 Crawl-delay: 1

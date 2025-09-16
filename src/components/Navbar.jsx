@@ -39,19 +39,19 @@ const Navbar = () => {
         {
             name: 'GitHub',
             icon: Github,
-            href: 'https://github.com/yourusername',
+            href: 'https://github.com/MugishaProsper',
             color: 'hover:text-ai-primary'
         },
         {
             name: 'LinkedIn',
             icon: Linkedin,
-            href: 'https://linkedin.com/in/yourusername',
+            href: 'https://linkedin.com/in/mugisha-prosper-7a5981297',
             color: 'hover:text-ai-secondary'
         },
         {
             name: 'Instagram',
             icon: Instagram,
-            href: 'https://instagram.com/yourusername',
+            href: 'https://instagram.com/p.o.l.o_10',
             color: 'hover:text-ai-accent'
         }
     ];
@@ -69,7 +69,7 @@ const Navbar = () => {
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ duration: 0.8 }}
-            className="fixed top-0 left-0 right-0 z-50 glass-dark"
+            className="fixed top-4 left-4 right-4 z-50 glass rounded-lg"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
@@ -78,8 +78,8 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         className="flex-shrink-0"
                     >
-                        <h3 className="text-2xl font-bold text-gradient-ai">
-                            <img src="/logo.svg" alt="logo" className="w-25" />
+                        <h3 className="text-2xl font-bold">
+                            { isDark ? (<img src="/logo.svg" alt="logo" className="w-25" />) : (<img src="/logo_dark.svg" alt="logo" className="w-25" />)}
                         </h3>
                     </motion.div>
 

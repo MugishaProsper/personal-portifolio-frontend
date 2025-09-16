@@ -154,13 +154,13 @@ const About = () => {
                       <span className={`${isDark ? 'text-gray-300' : 'text-gray-500'} font-medium text-sm`}>{skill.name}</span>
                       <span className={`${isDark ? 'text-gray-200': 'text-gray-500'}font-bold text-md`}>{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-500 rounded-full h-2">
+                    <div className="w-full bg-gray-200 rounded-full h-2">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        className={`h-2 rounded-full ${skill.color} ${ isDark ? 'bg-gray-200' : 'bg-gradient-ai'}`}
+                        className={`h-2 rounded-full ${skill.color} ${ isDark ? 'bg-gray-500' : 'bg-gradient-primary'}`}
                       />
                     </div>
                   </motion.div>

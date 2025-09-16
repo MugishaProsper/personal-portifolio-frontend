@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Code, Brain, Globe, Smartphone, MessageCircleDashed, X, Send, Calendar, ThumbsUp, Loader2 } from "lucide-react";
 import { useState } from "react";
 import useProjects from "../hooks/useProjects";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Projects = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -11,6 +12,7 @@ const Projects = () => {
 
   // Use the hook to fetch real data
   const { loading, error, projects } = useProjects();
+  const { isDark } = useTheme()
 
   // Get unique categories from the API data
   const categories = ["All", ...new Set(projects.flatMap(project => project.categories || []))];
@@ -89,7 +91,7 @@ const Projects = () => {
 
     const category = categories[0];
     const colorMap = {
-      "AI/ML": "text-ai-primary",
+      "AI/ML": "text-gradient-primary",
       "Computer Vision": "text-ai-accent",
       "Mobile": "text-ai-success",
       "Web Development": "text-ai-secondary",
@@ -110,7 +112,7 @@ const Projects = () => {
             <div className="flex items-center justify-center mb-8">
               <Loader2 className="w-8 h-8 text-ai-primary animate-spin" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-gray-500'} mb-4`}>
               Loading <span className="text-gradient-ai">Projects</span>
             </h2>
             <p className="text-xl text-gray-300">
@@ -128,7 +130,7 @@ const Projects = () => {
       <section id="projects" className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-500'} mb-4`}>
               Error Loading <span className="text-gradient-ai">Projects</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
@@ -161,10 +163,10 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'} mb-4`}>
             Featured <span className="text-gradient-ai">Projects</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Explore my latest work showcasing AI integration, modern web development, and innovative solutions.
           </p>
         </motion.div>
@@ -176,8 +178,8 @@ const Projects = () => {
               key={category}
               onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 rounded-lg transition-all duration-300 ${selectedCategory === category
-                ? "bg-gradient-primary text-white shadow-lg"
-                : "card-glass text-gray-300 hover:bg-white/10"
+                ? "bg-gradient-primary shadow-lg text-gray-200"
+                : `card-ai hover:bg-white/10 ${isDark ? 'text-gray-200' : 'text-gray-500'}`
                 }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -208,7 +210,7 @@ const Projects = () => {
                   {/* Project Image */}
                   <div className="relative h-48 overflow-hidden">
                     <img
-                      src={project.sampleImage}
+                      src={project.sampleImages[0]}
                       alt={project.projectName}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
@@ -228,10 +230,10 @@ const Projects = () => {
 
                   {/* Project Content */}
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-gradient-ai transition-colors duration-300">
+                    <h3 className={`text-xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'} mb-3 group-hover:text-gradient-ai transition-colors duration-300`}>
                       {project.projectName}
                     </h3>
-                    <p className="text-gray-300 mb-4 line-clamp-3">
+                    <p className={`${isDark ? 'text-gray-300' : 'text-gray-500'} mb-4 line-clamp-3`}>
                       {project.projectDescription}
                     </p>
 
@@ -240,13 +242,13 @@ const Projects = () => {
                       {project.technologies && project.technologies.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 bg-white/10 rounded text-xs text-gray-300"
+                          className={`px-2 py-1 bg-white/10 rounded text-xs ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies && project.technologies.length > 3 && (
-                        <span className="px-2 py-1 bg-white/10 rounded text-xs text-gray-300">
+                        <span className={`px-2 py-1 bg-white/10 rounded text-xs ${isDark ? 'text-gray-200' : 'text-gray-500'}`}>
                           +{project.technologies.length - 3} more
                         </span>
                       )}
@@ -254,35 +256,24 @@ const Projects = () => {
 
                     {/* Statistics */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-4 text-sm text-gray-400">
-                        <div className="flex items-center gap-1">
-                          <ThumbsUp className="w-4 h-4" />
-                          {project.statistics?.likes || 0}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MessageCircleDashed className="w-4 h-4" />
-                          {project.statistics?.comments_count || 0}
-                        </div>
-                      </div>
                       <div className="text-xs text-gray-500">
                         {formatDate(project.createdAt)}
                       </div>
-                    </div>
-
-                    {/* Project Links */}
-                    <div className="flex gap-3">
-                      <motion.a
-                        href={project.projectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-primary rounded-lg text-white text-sm font-medium hover:shadow-lg transition-all duration-300"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Visit Project
-                      </motion.a>
+                      {/* Project Links */}
+                      <div className="flex gap-3">
+                        <motion.a
+                          href={project.projectUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex items-center gap-2 px-4 py-2 bg-gradient-primary rounded-lg text-white text-sm font-medium hover:shadow-lg transition-all duration-300"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Visit Project
+                        </motion.a>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,14 +1,10 @@
 import { motion } from "framer-motion";
-import {
-  Code, Brain, Database, Cloud, Smartphone, Globe,
-  Zap, Shield, Palette, Cpu, Network, Lock
-} from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
     {
       title: "Frontend Development",
-      icon: Code,
+      icon: "/icons/code.svg",
       color: "text-ai-primary",
       bgColor: "bg-ai-primary/10",
       skills: [
@@ -20,7 +16,7 @@ const Skills = () => {
     },
     {
       title: "AI & Machine Learning",
-      icon: Brain,
+      icon: "/icons/brain.svg",
       color: "text-ai-secondary",
       bgColor: "bg-ai-secondary/10",
       skills: [
@@ -32,7 +28,7 @@ const Skills = () => {
     },
     {
       title: "Backend Development",
-      icon: Database,
+      icon: "/icons/database.svg",
       color: "text-ai-accent",
       bgColor: "bg-ai-accent/10",
       skills: [
@@ -44,7 +40,7 @@ const Skills = () => {
     },
     {
       title: "Cloud & DevOps",
-      icon: Cloud,
+      icon: "/icons/cloud.svg",
       color: "text-ai-success",
       bgColor: "bg-ai-success/10",
       skills: [
@@ -56,7 +52,7 @@ const Skills = () => {
     },
     {
       title: "Mobile Development",
-      icon: Smartphone,
+      icon: "/icons/smartphone.svg",
       color: "text-ai-warning",
       bgColor: "bg-ai-warning/10",
       skills: [
@@ -68,7 +64,7 @@ const Skills = () => {
     },
     {
       title: "Data & Analytics",
-      icon: Globe,
+      icon: "/icons/globe.svg",
       color: "text-ai-error",
       bgColor: "bg-ai-error/10",
       skills: [
@@ -81,18 +77,18 @@ const Skills = () => {
   ];
 
   const technologies = [
-    { name: "React", icon: Code, color: "text-ai-primary" },
-    { name: "Node.js", icon: Zap, color: "text-ai-success" },
-    { name: "Python", icon: Brain, color: "text-ai-secondary" },
-    { name: "AWS", icon: Cloud, color: "text-ai-warning" },
-    { name: "Docker", icon: Shield, color: "text-ai-accent" },
-    { name: "MongoDB", icon: Database, color: "text-ai-success" },
-    { name: "TensorFlow", icon: Cpu, color: "text-ai-primary" },
-    { name: "TypeScript", icon: Code, color: "text-ai-secondary" },
-    { name: "Next.js", icon: Globe, color: "text-ai-accent" },
-    { name: "Firebase", icon: Network, color: "text-ai-warning" },
-    { name: "GraphQL", icon: Network, color: "text-ai-primary" },
-    { name: "Redis", icon: Lock, color: "text-ai-error" }
+    { name: "React", icon: "/icons/react.svg", color: "text-ai-primary" },
+    { name: "Node.js", icon: "/icons/nodejs.svg", color: "text-ai-success" },
+    { name: "Python", icon: "/icons/python.svg", color: "text-ai-secondary" },
+    { name: "AWS", icon: "/icons/aws.svg", color: "text-ai-warning" },
+    { name: "Docker", icon: "/icons/docker.svg", color: "text-ai-accent" },
+    { name: "MongoDB", icon: "/icons/mongodb.svg", color: "text-ai-success" },
+    { name: "TensorFlow", icon: "/icons/tensorflow.svg", color: "text-ai-primary" },
+    { name: "TypeScript", icon: "/icons/typescript.svg", color: "text-ai-secondary" },
+    { name: "Next.js", icon: "/icons/nextjs.svg", color: "text-ai-accent" },
+    { name: "Firebase", icon: "/icons/firebase.svg", color: "text-ai-warning" },
+    { name: "GraphQL", icon: "/icons/graphql.svg", color: "text-ai-primary" },
+    { name: "Redis", icon: "/icons/redis.svg", color: "text-ai-error" }
   ];
 
   return (
@@ -132,7 +128,11 @@ const Skills = () => {
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className={`p-3 rounded-lg ${category.bgColor}`}>
-                  <category.icon className={`w-6 h-6 ${category.color}`} />
+                  <img 
+                    src={category.icon} 
+                    alt={category.title}
+                    className={`w-6 h-6 ${category.color}`}
+                  />
                 </div>
                 <h3 className="text-xl font-bold text-white">{category.title}</h3>
               </div>
@@ -191,7 +191,11 @@ const Skills = () => {
               className="card-ai p-6 text-center group cursor-pointer"
             >
               <div className={`w-12 h-12 mx-auto mb-4 p-3 rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors duration-300`}>
-                <tech.icon className={`w-full h-full ${tech.color}`} />
+                <img 
+                  src={tech.icon} 
+                  alt={tech.name}
+                  className={`w-full h-full ${tech.color}`}
+                />
               </div>
               <h4 className="text-white font-medium text-sm">{tech.name}</h4>
             </motion.div>
@@ -202,4 +206,4 @@ const Skills = () => {
   );
 };
 
-export default Skills; 
+export default Skills;

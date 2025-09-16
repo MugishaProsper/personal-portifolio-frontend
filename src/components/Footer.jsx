@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Heart } from "lucide-react";
+import { Github, Linkedin, Instagram, Heart, Mail, Phone, MapPin } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { isDark } = useTheme()
 
   const socialLinks = [
     {
@@ -38,19 +40,22 @@ const Footer = () => {
       title: "Email",
       value: "nelsonprox92@gmail.com",
       href: "mailto:nelsonprox92@gmail.com",
-      color: "text-ai-primary"
+      color: "text-ai-primary",
+      icon: Mail
     },
     {
       title: "Phone",
       value: "+250 798 615 286",
       href: "tel:+250798615286",
-      color: "text-ai-secondary"
+      color: "text-ai-secondary",
+      icon: Phone
     },
     {
       title: "Location",
       value: "Kigali, Rwanda",
       href: "#",
-      color: "text-ai-accent"
+      color: "text-ai-accent",
+      icon: MapPin
     }
   ];
 
@@ -62,7 +67,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative min-h-screen">
+    <footer className="relative">
       {/* Background AI Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className={`absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl ai-float`}></div>
@@ -79,8 +84,8 @@ const Footer = () => {
             viewport={{ once: true }}
             className="md:col-span-2"
           >
-            <h3 className="text-2xl font-bold text-gradient-ai mb-4">Polo</h3>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <h3 className="text-2xl font-bold text-gradient-ai mb-4">Mugisha Prosper</h3>
+            <p className={`text-${isDark ? 'gray-300' : 'gray-600'} mb-6 max-w-md`}>
               AI-powered developer passionate about creating intelligent solutions that make a difference.
               Let's build the future together with cutting-edge technology.
             </p>
@@ -99,7 +104,7 @@ const Footer = () => {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`p-3 rounded-lg bg-white/10 text-gray-300 ${social.color} transition-all duration-300`}
+                  className={`p-3 rounded-lg bg-${isDark ? 'gray-800' : 'white'}/10 text-${isDark ? 'gray-300' : 'gray-600'} ${social.color} transition-all duration-300`}
                 >
                   <social.icon className="w-5 h-5" />
                 </motion.a>
@@ -114,7 +119,7 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <h4 className={`text-${isDark ? 'gray-300' : 'gray-600'} font-semibold mb-4`}>Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <motion.li
@@ -126,7 +131,7 @@ const Footer = () => {
                 >
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="text-gray-300 hover:text-white transition-colors duration-200"
+                    className={`text-${isDark ? 'gray-300' : 'gray-600'} hover:text-${isDark ? 'gray-200' : 'gray-300'} transition-colors duration-200`}
                   >
                     {link.name}
                   </button>
@@ -142,13 +147,25 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
-            {contactInfo.map((contact) => (
-              <div className="space-y-3">
-                <p>{contact.title}</p>
-                <p>{contact.value}</p>
-              </div>
-            ))}
+            <h4 className={`text-${isDark ? 'gray-300' : 'gray-600'} font-semibold mb-4`}>Contacts</h4>
+            <ul className="space-y-3">
+              {contactInfo.map((contact, index) => (
+                <motion.li
+                  key={contact.value}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <button
+                    onClick={() => window.open(contact.href)}
+                    className={`text-${isDark ? 'gray-300' : 'gray-600'} hover:text-${isDark ? 'gray-200' : 'gray-300'} transition-colors duration-200`}
+                  >
+                    {contact.value}
+                  </button>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
         </div>
 
@@ -161,13 +178,11 @@ const Footer = () => {
           className="border-t border-white/10 mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-300 text-sm">
+            <p className={`text-${isDark ? 'gray-300' : 'gray-600'} text-sm`}>
               © {currentYear} Polo. All rights reserved.
             </p>
-            <div className="flex items-center gap-2 text-gray-300 text-sm">
-              <span>Made with</span>
-              <Heart className="w-4 h-4 text-ai-error animate-pulse" />
-              <span>and AI</span>
+            <div className={`flex items-center gap-2 ${isDark ? 'text-gray-200' : 'text-gray-600'} text-sm`}>
+              <span>Made by <span className="text-gradient-ai">Mugisha Prosper</span></span>
             </div>
           </div>
         </motion.div>

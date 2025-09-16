@@ -233,7 +233,7 @@ const Testimonials = () => {
           className="text-center mt-8"
         >
           <div className="card-ai p-6 max-w-2xl mx-auto">
-            <h3 className="text-xl font-bold text-white mb-3">
+            <h3 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-600'} mb-3`}>
               Ready to join these satisfied clients?
             </h3>
             <p className="text-gray-300 text-sm mb-4">

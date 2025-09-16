@@ -296,21 +296,10 @@ body {
   --border-primary: #e2e8f0;
   --border-secondary: #cbd5e1;
   
-  /* Override AI colors for light theme */
-  --ai-gray-50: #f8fafc;
-  --ai-gray-100: #f1f5f9;
-  --ai-gray-200: #e2e8f0;
-  --ai-gray-300: #cbd5e1;
-  --ai-gray-400: #94a3b8;
-  --ai-gray-500: #64748b;
-  --ai-gray-600: #475569;
-  --ai-gray-700: #334155;
-  --ai-gray-800: #1e293b;
-  --ai-gray-900: #0f172a;
   
   /* Glassmorphism for light theme */
   --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-border: rgba(46, 43, 43, 0.1);
   --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
 }
 

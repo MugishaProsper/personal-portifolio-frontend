@@ -1,9 +1,11 @@
 import axios from "axios";
 import { motion } from "framer-motion";
 import { User, Award, Clock, Target } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const About = () => {
   const currentYear = new Date().getFullYear();
+  const { isDark } = useTheme()
   const stats = [
     {
       icon: Award,
@@ -62,11 +64,11 @@ const About = () => {
         >
           <h2 
             id="about-heading"
-            className="text-4xl md:text-5xl font-bold text-white p-4"
+            className={`text-4xl md:text-5xl font-bold ${ isDark ? 'text-gray-200' : 'text-gray-700'} p-4`}
           >
             About <span className="text-gradient-ai">Me</span>
           </h2>
-          <p className="text-xl p-2">
+          <p className="text-xl text-gray-400 p-2">
             Passionate AI developer with expertise in creating intelligent solutions that bridge the gap between cutting-edge technology and real-world applications.
           </p>
         </motion.div>
@@ -103,8 +105,8 @@ const About = () => {
                   className="card-ai p-4 text-center"
                 >
                   <stat.icon className={`w-6 h-6 ${stat.color} mx-auto mb-2`} />
-                  <div className="text-xl font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-gray-300 text-xs">{stat.label}</div>
+                  <div className={`text-xl font-bold ${ isDark ? 'text-gray-200' : 'text-gray-500'} mb-1`}>{stat.value}</div>
+                  <div className={`${isDark ? 'text-gray-300' : 'text-gray-500'} text-xs`}>{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -119,8 +121,8 @@ const About = () => {
             className="space-y-6"
           >
             <div className="card-ai p-6">
-              <h3 className="text-xl font-bold text-white mb-4">My Journey</h3>
-              <div className="space-y-3 text-gray-300 text-sm">
+              <h3 className={`text-xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700' } mb-4`}>My Journey</h3>
+              <div className={`space-y-3 ${isDark ? 'text-gray-300' : 'text-gray-500'} text-sm`}>
                 <p>
                   I'm a passionate developer with over 5 years of experience in full-stack development and AI/ML technologies.
                   My journey began with a fascination for how artificial intelligence can solve real-world problems.
@@ -138,7 +140,7 @@ const About = () => {
 
             {/* Skills Progress */}
             <div className="card-ai p-6">
-              <h3 className="text-xl font-bold text-white mb-4">Technical Skills</h3>
+              <h3 className={`text-xl font-bold ${ isDark ? 'text-white' : 'text-gray-700'} mb-4`}>Technical Skills</h3>
               <div className="space-y-3">
                 {skills.map((skill, index) => (
                   <motion.div
@@ -149,16 +151,16 @@ const About = () => {
                     viewport={{ once: true }}
                   >
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-gray-300 font-medium text-sm">{skill.name}</span>
-                      <span className="text-white font-bold text-sm">{skill.level}%</span>
+                      <span className={`${isDark ? 'text-gray-300' : 'text-gray-500'} font-medium text-sm`}>{skill.name}</span>
+                      <span className={`${isDark ? 'text-gray-200': 'text-gray-500'}font-bold text-md`}>{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className="w-full bg-gray-500 rounded-full h-2">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        className={`h-2 rounded-full ${skill.color}`}
+                        className={`h-2 rounded-full ${skill.color} ${ isDark ? 'bg-gray-200' : 'bg-gradient-ai'}`}
                       />
                     </div>
                   </motion.div>

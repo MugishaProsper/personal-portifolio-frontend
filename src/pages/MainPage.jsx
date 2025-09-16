@@ -12,7 +12,7 @@ const MainPage = () => {
     const { isDark } = useTheme();
     
     return (
-        <div className={`relative min-h-screen transition-colors duration-300 ${isDark ? 'bg-dark' : 'bg-primary'}`}>
+        <div className={`relative min-h-screen transition-colors duration-300 ${isDark ? 'bg-primary' : 'bg-light'}`}>
             <Navbar />
 
             {/* Main Content */}

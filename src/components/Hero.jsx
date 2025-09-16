@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Sparkles, Code, Brain, Zap } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
@@ -9,8 +10,10 @@ const Hero = () => {
     }
   };
 
+  const { isDark } = useTheme()
+
   return (
-    <section 
+    <section
       className="min-h-screen relative flex items-center justify-center overflow-hidden w-full pt-10"
       aria-label="Hero section introducing MUGISHA Prosper"
     >
@@ -107,7 +110,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl text-gray-300 p-4 max-w-2xl mx-auto leading-relaxed"
+          className={`text-xl md:text-2xl ${isDark ? 'text-gray-300' : ''} p-4 max-w-2xl mx-auto leading-relaxed`}
         >
           Crafting intelligent digital experiences with cutting-edge AI technologies and modern web development
         </motion.p>
@@ -120,19 +123,19 @@ const Hero = () => {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 pt-8"
         >
           <div className="card-ai p-6 text-center">
-            <Code className="w-8 h-8 text-ai-primary mx-auto mb-3" />
-            <h3 className="text-white font-semibold mb-2">Backend Development</h3>
-            <p className="text-gray-300 text-sm">Node.js, FastAPI, Django, Golang</p>
+            <Code className="w-10 h-10 mx-auto mb-3" />
+            <h3 className={`${isDark ? 'text-gray-200' : 'text-gray-700'} font-semibold mb-2`}>Backend Development</h3>
+            <p className="text-gray-400 text-sm">Node.js, FastAPI, Django, Golang</p>
           </div>
           <div className="card-ai p-6 text-center">
-            <Brain className="w-8 h-8 text-ai-secondary mx-auto mb-3" />
-            <h3 className="text-white font-semibold mb-2">AI & Machine Learning</h3>
-            <p className="text-gray-300 text-sm">TensorFlow, OpenAI, Computer Vision, PyTorch</p>
+            <Brain className="w-10 h-10 text-ai-secondary mx-auto mb-3" />
+            <h3 className={`${isDark ? 'text-gray-200' : 'text-gray-700'} font-semibold mb-2`}>AI & Machine Learning</h3>
+            <p className="text-gray-400 text-sm">TensorFlow, OpenAI, Computer Vision, PyTorch</p>
           </div>
           <div className="card-ai p-6 text-center">
-            <Zap className="w-8 h-8 text-ai-accent mx-auto mb-3" />
-            <h3 className="text-white font-semibold mb-2">Modern Technologies</h3>
-            <p className="text-gray-300 text-sm">Cloud Computing, DevOps, Microservices</p>
+            <Zap className="w-10 h-10 text-ai-accent mx-auto mb-3" />
+            <h3 className={`${isDark ? 'text-gray-200' : 'text-gray-700'} font-semibold mb-2`}>Modern Technologies</h3>
+            <p className="text-gray-400 text-sm">Cloud Computing, DevOps, Microservices</p>
           </div>
         </motion.div>
       </div>

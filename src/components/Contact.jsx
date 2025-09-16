@@ -3,8 +3,10 @@ import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, CheckCircle, Al
 import { useState } from "react";
 import useMessage from "../hooks/useMessage";
 import { InlineLoading } from "./LoadingSpinner";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Contact = () => {
+  const { isDark } = useTheme()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -100,10 +102,10 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-center mb-6"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'} mb-4`}>
             Get In <span className="text-gradient-ai">Touch</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto p-2">
+          <p className={`text-xl max-w-4xl mx-auto p-2 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
             Ready to collaborate on your next project? Let's discuss how we can bring your ideas to life with AI-powered solutions.
           </p>
         </motion.div>
@@ -118,8 +120,8 @@ const Contact = () => {
             className="space-y-4"
           >
             <div className="card-ai p-6">
-              <h3 className="text-xl font-bold text-white mb-4">Let's Connect</h3>
-              <p className="text-gray-300 mb-6 text-sm">
+              <h3 className={`text-xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'} mb-4`}>Let's Connect</h3>
+              <p className={`mb-6 text-sm ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>
                 I'm always interested in new opportunities and exciting projects.
                 Whether you have a question or just want to say hi, feel free to reach out!
               </p>
@@ -135,21 +137,21 @@ const Contact = () => {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
                     whileHover={{ x: 10 }}
-                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors duration-300"
+                    className={`flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors duration-300 ${isDark ? 'hover:bg-gray-700' : 'hover:bg-white/5'}`}
                   >
-                    <div className={`p-2 rounded-lg bg-white/10 ${info.color}`}>
+                    <div className={`p-2 rounded-lg bg-white/10 ${isDark ? 'bg-gray-700' : 'bg-gray-600'}`}>
                       <info.icon className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold text-sm">{info.title}</h4>
-                      <p className="text-gray-300 text-sm">{info.value}</p>
+                      <h4 className={`text-${isDark ? 'gray-200' : 'gray-700'} font-semibold text-sm`}>{info.title}</h4>
+                      <p className={`text-${isDark ? 'gray-200' : 'gray-700'} text-sm`}>{info.value}</p>
                     </div>
                   </motion.a>
                 ))}
               </div>
 
               {/* Social Links */}
-              <div className="mt-6 pt-4 border-t border-white/10">
+              <div className={`mt-6 pt-4 border-t border-${isDark ? 'gray-700' : 'white/10'}`}>
                 <div className="flex gap-3 flex-row justify-center gap-4">
                   {socialLinks.map((social, index) => (
                     <motion.a
@@ -163,7 +165,7 @@ const Contact = () => {
                       viewport={{ once: true }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`p-2 rounded-lg bg-white/10 text-gray-300 ${social.color} transition-all duration-300`}
+                      className={`p-2 rounded-lg bg-white/10 text-${isDark ? 'gray-200' : 'gray-700'} ${social.color} transition-all duration-300`}
                     >
                       <social.icon className="w-4 h-4" />
                     </motion.a>
@@ -181,7 +183,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <div className="card-ai p-6">
-              <h3 className="text-xl font-bold text-white mb-4">Send Message</h3>
+              <h3 className={`text-xl font-bold text-${isDark ? 'gray-200' : 'gray-600'} mb-4`}>Send Message</h3>
 
               {/* Success/Error Messages */}
               {success && (
@@ -190,10 +192,10 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-4 bg-green-100 dark:bg-green-900/20 border border-green-300 dark:border-green-700 rounded-lg flex items-center gap-3"
                 >
-                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
+                  <CheckCircle className={`w-5 h-5 text-${isDark ? 'green-400' : 'green-600'} flex-shrink-0`} />
                   <div>
-                    <p className="text-green-800 dark:text-green-200 font-medium">Message sent successfully!</p>
-                    <p className="text-green-600 dark:text-green-300 text-sm">Thank you for reaching out. I'll get back to you soon.</p>
+                    <p className={`text-${isDark ? 'green-200' : 'green-800'} font-medium`}>Message sent successfully!</p>
+                    <p className={`text-${isDark ? 'green-300' : 'green-600'} text-sm`}>Thank you for reaching out. I'll get back to you soon.</p>
                   </div>
                 </motion.div>
               )}
@@ -204,14 +206,14 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="mb-4 p-4 bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg flex items-center gap-3"
                 >
-                  <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0" />
+                  <AlertCircle className={`w-5 h-5 text-${isDark ? 'red-400' : 'red-600'} flex-shrink-0`} />
                   <div>
-                    <p className="text-red-800 dark:text-red-200 font-medium">Failed to send message</p>
-                    <p className="text-red-600 dark:text-red-300 text-sm">{error.message}</p>
+                    <p className={`text-${isDark ? 'red-200' : 'red-800'} font-medium`}>Failed to send message</p>
+                    <p className={`text-${isDark ? 'red-300' : 'red-600'} text-sm`}>{error.message}</p>
                     {error.canRetry && (
                       <button
                         onClick={() => handleSubmit({ preventDefault: () => {} })}
-                        className="text-red-700 dark:text-red-300 underline text-sm mt-1 hover:no-underline"
+                        className={`text-${isDark ? 'red-300' : 'red-700'} underline text-sm mt-1 hover:no-underline`}
                       >
                         Try again
                       </button>
@@ -223,7 +225,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-white font-medium mb-1 text-sm">
+                    <label htmlFor="name" className={`block text-${isDark ? 'gray-200' : 'gray-600'} font-medium mb-1 text-sm`}>
                       Name
                     </label>
                     <input
@@ -233,12 +235,12 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="input-ai w-full bg-white/5 border-white/20 text-white placeholder-gray-400 text-sm"
+                      className={`input-ai w-full bg-white/5 border-white/20 text-${isDark ? 'gray-400' : 'gray-600'} placeholder-gray-400 text-sm`}
                       placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-white font-medium mb-1 text-sm">
+                    <label htmlFor="email" className={`block text-${isDark ? 'gray-200' : 'gray-600'} font-medium mb-1 text-sm`}>
                       Email
                     </label>
                     <input
@@ -248,14 +250,14 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="input-ai w-full bg-white/5 border-white/20 text-white placeholder-gray-400 text-sm"
+                      className={`input-ai w-full bg-white/5 border-white/20 text-${isDark ? 'gray-400' : 'gray-600'} placeholder-gray-400 text-sm`}
                       placeholder="your.email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-white font-medium mb-1 text-sm">
+                  <label htmlFor="subject" className={`block text-${isDark ? 'gray-200' : 'gray-600'} font-medium mb-1 text-sm`}>
                     Subject
                   </label>
                   <input
@@ -265,13 +267,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     required
-                    className="input-ai w-full bg-white/5 border-white/20 text-white placeholder-gray-400 text-sm"
+                    className={`input-ai w-full bg-white/5 border-white/20 text-${isDark ? 'gray-400' : 'gray-600'} placeholder-gray-400 text-sm`}
                     placeholder="What's this about?"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-white font-medium mb-1 text-sm">
+                  <label htmlFor="message" className={`block text-${isDark ? 'gray-200' : 'gray-600'} font-medium mb-1 text-sm`}>
                     Message
                   </label>
                   <textarea
@@ -281,7 +283,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={4}
-                    className="input-ai w-full bg-white/5 border-white/20 text-white placeholder-gray-400 resize-none text-sm"
+                    className={`input-ai w-full bg-white/5 border-white/20 text-${isDark ? 'gray-400' : 'gray-600'} placeholder-gray-400 resize-none text-sm`}
                     placeholder="Tell me about your project..."
                   />
                 </div>

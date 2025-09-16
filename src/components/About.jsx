@@ -41,7 +41,11 @@ const About = () => {
 
 
   return (
-    <section id="about" className="min-h-screen relative flex items-center justify-center">
+    <section 
+      id="about" 
+      className="min-h-screen relative flex items-center justify-center"
+      aria-labelledby="about-heading"
+    >
       {/* Background AI Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-purple-600/20 rounded-full blur-3xl ai-float"></div>
@@ -56,7 +60,10 @@ const About = () => {
           viewport={{ once: true }}
           className="text-center p-2 pt-4"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white p-4">
+          <h2 
+            id="about-heading"
+            className="text-4xl md:text-5xl font-bold text-white p-4"
+          >
             About <span className="text-gradient-ai">Me</span>
           </h2>
           <p className="text-xl p-2">

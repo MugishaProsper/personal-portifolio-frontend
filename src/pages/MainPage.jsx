@@ -6,34 +6,40 @@ import Skills from "../components/Skills";
 import Testimonials from "../components/Testimonials";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import { useTheme } from "../contexts/ThemeContext";
 
 const MainPage = () => {
+    const { isDark } = useTheme();
+    
     return (
-        <div className="relative bg-dark">
+        <div className={`relative min-h-screen transition-colors duration-300 ${isDark ? 'bg-dark' : 'bg-primary'}`}>
             <Navbar />
 
-            {/* Hero Section */}
-            <section id="home">
-                <Hero />
-            </section>
+            {/* Main Content */}
+            <main id="main-content">
+                {/* Hero Section */}
+                <section id="home">
+                    <Hero />
+                </section>
 
-            {/* About Section */}
-            <About />
+                {/* About Section */}
+                <About />
 
-            {/* Projects Section */}
-            <Projects />
+                {/* Projects Section */}
+                <Projects />
 
-            {/* Skills Section */}
-            <Skills />
+                {/* Skills Section */}
+                <Skills />
 
-            {/* Testimonials Section */}
-            <Testimonials />
+                {/* Testimonials Section */}
+                <Testimonials />
 
-            {/* Contact Section */}
-            <Contact />
+                {/* Contact Section */}
+                <Contact />
 
-            {/* Footer */}
-            <Footer />
+                {/* Footer */}
+                <Footer />
+            </main>
         </div>
     );
 };

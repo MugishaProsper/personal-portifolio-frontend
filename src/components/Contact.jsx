@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, CheckCircle, AlertCircle } from "lucide-react";
 import { useState } from "react";
+import useMessage from "../hooks/useMessage";
+import { InlineLoading } from "./LoadingSpinner";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +12,7 @@ const Contact = () => {
     message: ""
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { loading, error, success, sendMessage, clearMessage } = useMessage();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,22 +24,19 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
-    setIsSubmitting(false);
-
-    // Show success message (you can integrate with toast notifications)
-    alert("Message sent successfully!");
+    clearMessage(); // Clear any previous messages
+    
+    const success = await sendMessage(formData);
+    
+    if (success) {
+      // Reset form on success
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      });
+    }
   };
 
   const contactInfo = [
@@ -184,6 +183,43 @@ const Contact = () => {
             <div className="card-ai p-6">
               <h3 className="text-xl font-bold text-white mb-4">Send Message</h3>
 
+              {/* Success/Error Messages */}
+              {success && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 p-4 bg-green-100 dark:bg-green-900/20 border border-green-300 dark:border-green-700 rounded-lg flex items-center gap-3"
+                >
+                  <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
+                  <div>
+                    <p className="text-green-800 dark:text-green-200 font-medium">Message sent successfully!</p>
+                    <p className="text-green-600 dark:text-green-300 text-sm">Thank you for reaching out. I'll get back to you soon.</p>
+                  </div>
+                </motion.div>
+              )}
+
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 p-4 bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg flex items-center gap-3"
+                >
+                  <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0" />
+                  <div>
+                    <p className="text-red-800 dark:text-red-200 font-medium">Failed to send message</p>
+                    <p className="text-red-600 dark:text-red-300 text-sm">{error.message}</p>
+                    {error.canRetry && (
+                      <button
+                        onClick={() => handleSubmit({ preventDefault: () => {} })}
+                        className="text-red-700 dark:text-red-300 underline text-sm mt-1 hover:no-underline"
+                      >
+                        Try again
+                      </button>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
@@ -252,14 +288,14 @@ const Contact = () => {
 
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={loading}
+                  whileHover={{ scale: loading ? 1 : 1.02 }}
+                  whileTap={{ scale: loading ? 1 : 0.98 }}
                   className="btn-ai w-full flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
                 >
-                  {isSubmitting ? (
+                  {loading ? (
                     <>
-                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <InlineLoading size="sm" />
                       Sending...
                     </>
                   ) : (

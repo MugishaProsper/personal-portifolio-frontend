@@ -28,7 +28,7 @@ const Skills = () => {
     },
     {
       title: "Backend Development",
-      icon: "/icons/database.svg",
+      icon: "/icons/server.svg",
       color: "text-ai-accent",
       bgColor: "bg-ai-accent/10",
       skills: [
@@ -52,7 +52,7 @@ const Skills = () => {
     },
     {
       title: "Mobile Development",
-      icon: "/icons/smartphone.svg",
+      icon: "/icons/phone.svg",
       color: "text-ai-warning",
       bgColor: "bg-ai-warning/10",
       skills: [
@@ -86,7 +86,7 @@ const Skills = () => {
     { name: "TensorFlow", icon: "/icons/tensorflow.svg", color: "text-ai-primary" },
     { name: "TypeScript", icon: "/icons/typescript.svg", color: "text-ai-secondary" },
     { name: "Next.js", icon: "/icons/nextjs.svg", color: "text-ai-accent" },
-    { name: "Firebase", icon: "/icons/firebase.svg", color: "text-ai-warning" },
+    { name: "PostgreSQL", icon: "/icons/postgres.svg", color: "text-ai-warning" },
     { name: "GraphQL", icon: "/icons/graphql.svg", color: "text-ai-primary" },
     { name: "Redis", icon: "/icons/redis.svg", color: "text-ai-error" }
   ];

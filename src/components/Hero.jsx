@@ -10,7 +10,10 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen relative flex items-center justify-center overflow-hidden w-full pt-10">
+    <section 
+      className="min-h-screen relative flex items-center justify-center overflow-hidden w-full pt-10"
+      aria-label="Hero section introducing MUGISHA Prosper"
+    >
       {/* Animated Background */}
       <div className="absolute inset-0 bg-dark opacity-20"></div>
 
@@ -93,9 +96,11 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-5xl md:text-7xl font-bold p-4"
+          role="banner"
         >
           <span className="text-gradient-ai">MUGISHA Prosper</span>
           <br />
+          <span className="sr-only">AI Developer and Full-Stack Engineer</span>
         </motion.h1>
 
         <motion.p

@@ -1,18 +1,211 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
+  <!-- Basic Meta Tags -->
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description"
-    content="Polo - AI-Powered Developer Portfolio. Full-stack development, machine learning, and intelligent solutions." />
-  <title>Polo - AI Developer Portfolio</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <!-- Primary Meta Tags -->
+  <title>MUGISHA Prosper - AI Developer & Full-Stack Engineer | Portfolio</title>
+  <meta name="title" content="MUGISHA Prosper - AI Developer & Full-Stack Engineer | Portfolio" />
+  <meta name="description" content="Expert AI Developer and Full-Stack Engineer specializing in machine learning, computer vision, and intelligent web applications. Based in Kigali, Rwanda. Available for freelance projects and consultations." />
+  <meta name="keywords" content="AI Developer, Machine Learning Engineer, Full Stack Developer, React, Node.js, Python, TensorFlow, Computer Vision, Web Development, Kigali Rwanda, Freelance Developer, AI Solutions, Backend Development" />
+  <meta name="author" content="MUGISHA Prosper" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="7 days" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mugisha-prosper.vercel.app/" />
+  <meta property="og:title" content="MUGISHA Prosper - AI Developer & Full-Stack Engineer" />
+  <meta property="og:description" content="Expert AI Developer and Full-Stack Engineer specializing in machine learning, computer vision, and intelligent web applications. Based in Kigali, Rwanda." />
+  <meta property="og:image" content="https://mugisha-prosper.vercel.app/profile.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="MUGISHA Prosper - AI Developer Portfolio" />
+  <meta property="og:site_name" content="MUGISHA Prosper Portfolio" />
+  <meta property="og:locale" content="en_US" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://mugisha-prosper.vercel.app/" />
+  <meta property="twitter:title" content="MUGISHA Prosper - AI Developer & Full-Stack Engineer" />
+  <meta property="twitter:description" content="Expert AI Developer and Full-Stack Engineer specializing in machine learning, computer vision, and intelligent web applications." />
+  <meta property="twitter:image" content="https://mugisha-prosper.vercel.app/profile.jpg" />
+  <meta property="twitter:image:alt" content="MUGISHA Prosper - AI Developer Portfolio" />
+  <meta name="twitter:creator" content="@polo_dev" />
+  
+  <!-- LinkedIn -->
+  <meta property="article:author" content="https://linkedin.com/in/mugisha-prosper" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://mugisha-prosper.vercel.app/" />
+  
+  <!-- Favicon and Icons -->
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.svg" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/logo.svg" />
+  <link rel="manifest" href="/manifest.json" />
+  
+  <!-- Theme Colors -->
+  <meta name="theme-color" content="#6366f1" />
+  <meta name="msapplication-TileColor" content="#6366f1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Polo Portfolio" />
+  
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://personal-portifolio-backend.onrender.com" />
+  <link rel="dns-prefetch" href="https://ui-avatars.com" />
+  <link rel="dns-prefetch" href="https://images.unsplash.com" />
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- Structured Data - Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "MUGISHA Prosper",
+    "alternateName": "Polo",
+    "description": "AI Developer and Full-Stack Engineer specializing in machine learning, computer vision, and intelligent web applications",
+    "url": "https://mugisha-prosper.vercel.app",
+    "image": "https://mugisha-prosper.vercel.app/profile.jpg",
+    "sameAs": [
+      "https://github.com/MugishaProsper",
+      "https://linkedin.com/in/mugisha-prosper",
+      "https://instagram.com/p.o.l.o_10"
+    ],
+    "jobTitle": "AI Developer & Full-Stack Engineer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Freelance"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kigali",
+      "addressCountry": "Rwanda"
+    },
+    "email": "nelsonprox92@gmail.com",
+    "telephone": "+250798615286",
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Computer Vision",
+      "Full-Stack Development",
+      "React.js",
+      "Node.js",
+      "Python",
+      "TensorFlow",
+      "PyTorch",
+      "Web Development"
+    ]
+  }
+  </script>
+  
+  <!-- Structured Data - Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MUGISHA Prosper Portfolio",
+    "alternateName": "Polo Portfolio",
+    "description": "Professional portfolio showcasing AI development, machine learning projects, and full-stack web applications",
+    "url": "https://mugisha-prosper.vercel.app",
+    "author": {
+      "@type": "Person",
+      "name": "MUGISHA Prosper"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://mugisha-prosper.vercel.app/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <!-- Structured Data - Professional Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "MUGISHA Prosper - AI Development Services",
+    "description": "Professional AI development, machine learning consulting, and full-stack web development services",
+    "provider": {
+      "@type": "Person",
+      "name": "MUGISHA Prosper"
+    },
+    "areaServed": "Worldwide",
+    "serviceType": [
+      "AI Development",
+      "Machine Learning Consulting",
+      "Full-Stack Web Development",
+      "Computer Vision Solutions",
+      "Backend Development"
+    ],
+    "url": "https://mugisha-prosper.vercel.app",
+    "telephone": "+250798615286",
+    "email": "nelsonprox92@gmail.com"
+  }
+  </script>
+  
+  <!-- Performance optimizations -->
+  <link rel="preload" href="/src/main.jsx" as="script" />
+  <link rel="modulepreload" href="/src/main.jsx" />
+  
+  <!-- Critical CSS will be inlined here by build process -->
 </head>
 
 <body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+    Skip to main content
+  </a>
+  
   <div id="root"></div>
+  
+  <!-- Main application script -->
   <script type="module" src="/src/main.jsx"></script>
+  
+  <!-- Service Worker for PWA capabilities -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registered: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('SW registration failed: ', registrationError);
+          });
+      });
+    }
+  </script>
+  
+  <!-- Google Analytics (replace with your tracking ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+  
+  <!-- Microsoft Clarity (replace with your project ID) -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "CLARITY_PROJECT_ID");
+  </script>
 </body>
 
 </html>

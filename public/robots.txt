@@ -1,0 +1,46 @@
+# Robots.txt for MUGISHA Prosper Portfolio
+# https://mugisha-prosper.vercel.app/robots.txt
+
+User-agent: *
+Allow: /
+
+# Priority pages for crawling
+Allow: /
+Allow: /#about
+Allow: /#projects
+Allow: /#skills
+Allow: /#testimonials
+Allow: /#contact
+
+# Disallow admin or sensitive areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Sitemap location
+Sitemap: https://mugisha-prosper.vercel.app/sitemap.xml
+
+# Crawl delay (optional - be respectful to crawlers)
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Block common bad bots (optional)
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /

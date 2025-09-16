@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { Github, Instagram, Linkedin, Menu, X } from "lucide-react";
 import { useState } from "react";
+import ThemeToggle from "./ThemeToggle";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { isDark } = useTheme();
 
     const navigation = [
         {
@@ -84,20 +87,21 @@ const Navbar = () => {
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-8">
                             {navigation.map((item) => (
-                                <motion.button
-                                    key={item.name}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    onClick={() => scrollToSection(item.href)}
-                                    className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                                >
+                        <motion.button
+                            key={item.name}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => scrollToSection(item.href)}
+                            className={`${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900'} px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-ai-primary focus:ring-offset-2 ${isDark ? 'focus:ring-offset-gray-900' : 'focus:ring-offset-white'}`}
+                            aria-label={`Navigate to ${item.name} section`}
+                        >
                                     {item.name}
                                 </motion.button>
                             ))}
                         </div>
                     </div>
 
-                    {/* Social Links */}
+                    {/* Social Links and Theme Toggle */}
                     <div className="hidden md:flex items-center space-x-4">
                         {socialLinks.map((social) => (
                             <motion.a
@@ -107,19 +111,23 @@ const Navbar = () => {
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.1, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
-                                className={`text-gray-300 ${social.color} transition-colors duration-200 p-2 rounded-lg hover:bg-white/10`}
+                                className={`${isDark ? 'text-gray-300' : 'text-gray-600'} ${social.color} transition-colors duration-200 p-2 rounded-lg ${isDark ? 'hover:bg-white/10' : 'hover:bg-black/10'} focus:outline-none focus:ring-2 focus:ring-ai-primary focus:ring-offset-2 ${isDark ? 'focus:ring-offset-gray-900' : 'focus:ring-offset-white'}`}
+                                aria-label={`Visit my ${social.name} profile`}
                             >
                                 <social.icon className="w-5 h-5" />
                             </motion.a>
                         ))}
+                        <div className="h-6 w-px bg-gray-300 opacity-30"></div>
+                        <ThemeToggle />
                     </div>
 
-                    {/* Mobile menu button */}
-                    <div className="md:hidden">
+                    {/* Mobile menu button and theme toggle */}
+                    <div className="md:hidden flex items-center space-x-2">
+                        <ThemeToggle />
                         <motion.button
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="text-gray-300 hover:text-white p-2 rounded-md"
+                            className={`${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900'} p-2 rounded-md`}
                         >
                             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </motion.button>
@@ -141,7 +149,8 @@ const Navbar = () => {
                                 key={item.name}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => scrollToSection(item.href)}
-                                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left"
+                                className={`${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-700 hover:text-gray-900'} block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 w-full text-left focus:outline-none focus:ring-2 focus:ring-ai-primary focus:ring-offset-2 ${isDark ? 'focus:ring-offset-gray-900' : 'focus:ring-offset-white'}`}
+                                aria-label={`Navigate to ${item.name} section`}
                             >
                                 {item.name}
                             </motion.button>

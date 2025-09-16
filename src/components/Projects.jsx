@@ -254,16 +254,6 @@ const Projects = () => {
 
                     {/* Statistics */}
                     <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-4 text-sm text-gray-400">
-                        <div className="flex items-center gap-1">
-                          <ThumbsUp className="w-4 h-4" />
-                          {project.statistics?.likes || 0}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <MessageCircleDashed className="w-4 h-4" />
-                          {project.statistics?.comments_count || 0}
-                        </div>
-                      </div>
                       <div className="text-xs text-gray-500">
                         {formatDate(project.createdAt)}
                       </div>

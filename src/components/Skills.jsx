@@ -64,7 +64,7 @@ const Skills = () => {
     },
     {
       title: "Data & Analytics",
-      icon: "/icons/globe.svg",
+      icon: "/icons/chart.svg",
       color: "text-ai-error",
       bgColor: "bg-ai-error/10",
       skills: [
@@ -156,7 +156,7 @@ const Skills = () => {
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: skillIndex * 0.1 }}
                         viewport={{ once: true }}
-                        className={`h-2 rounded-full ${category.color.replace('text-', 'bg-')}`}
+                        className={`h-2 rounded-full text-ai ${category.color.replace('text-green-500', 'bg-green-500')}`}
                       />
                     </div>
                   </motion.div>

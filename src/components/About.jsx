@@ -32,10 +32,10 @@ const About = () => {
   ];
 
   const skills = [
-    { name: "React/Next.js", level: 95, color: "bg-ai-primary" },
-    { name: "Node.js/Python", level: 90, color: "bg-ai-secondary" },
-    { name: "AI/ML", level: 85, color: "bg-ai-accent" },
-    { name: "Cloud/AWS", level: 80, color: "bg-ai-success" },
+    { name: "Node.js/Python", level: 95, color: "bg-ai-secondary" },
+    { name: "AI/ML", level: 90, color: "bg-ai-accent" },
+    { name: "Cloud/AWS", level: 85, color: "bg-ai-success" },
+    { name: "React/Next.js", level: 80, color: "bg-ai-primary" },
     { name: "DevOps", level: 75, color: "bg-ai-warning" }
   ];
 
@@ -151,7 +151,7 @@ const About = () => {
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        className={`h-2 rounded-full ${skill.color}`}
+                        className={`h-2 rounded-full text-ai ${skill.color}`}
                       />
                     </div>
                   </motion.div>

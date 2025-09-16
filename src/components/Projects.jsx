@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Code, Brain, Globe, Smartphone, MessageCircleDashed, X, Send, Calendar, ThumbsUp, Loader2 } from "lucide-react";
+import { ExternalLink, Code, Brain, Globe, Smartphone, X, Calendar, Loader2 } from "lucide-react";
 import { useState } from "react";
 import useProjects from "../hooks/useProjects";
 import { useTheme } from "../contexts/ThemeContext";
@@ -24,28 +24,6 @@ const Projects = () => {
   const closePopover = () => {
     setSelectedProject(null);
     setCommentText("");
-  };
-
-  const handleAddComment = () => {
-    if (commentText.trim()) {
-      const newComment = {
-        _id: `comment_${Date.now()}`,
-        user: "You",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
-        text: commentText,
-        createdAt: new Date().toISOString()
-      };
-
-      setSelectedProject(prev => ({
-        ...prev,
-        statistics: {
-          ...prev.statistics,
-          comments: [newComment, ...(prev.statistics?.comments || [])],
-          comments_count: (prev.statistics?.comments_count || 0) + 1
-        }
-      }));
-      setCommentText("");
-    }
   };
 
   const formatDate = (dateString) => {
@@ -398,13 +376,7 @@ const Projects = () => {
                       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-6 text-sm text-gray-400">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <span className="hidden sm:inline">Created: {formatDate(selectedProject.createdAt)}</span>
-                          <span className="sm:hidden">Created: {formatDate(selectedProject.createdAt)}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span className="hidden sm:inline">Updated: {formatDate(selectedProject.updatedAt)}</span>
-                          <span className="sm:hidden">Updated: {formatDate(selectedProject.updatedAt)}</span>
+                          <span className="hidden sm:inline">Added: {formatDate(selectedProject.createdAt)}</span>
                         </div>
                       </div>
                     </div>
@@ -442,70 +414,6 @@ const Projects = () => {
                       <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
                       Visit Live Project
                     </a>
-                  </div>
-                </div>
-
-                {/* Comments Section */}
-                <div className="border-t border-white/10 pt-4 sm:pt-6">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mb-4 sm:mb-6">
-                    <h3 className="text-white font-semibold text-base sm:text-lg">Comments ({selectedProject.statistics?.comments_count || 0})</h3>
-                    <div className="flex items-center gap-4 text-sm text-gray-400">
-                      <div className="flex items-center gap-1">
-                        <ThumbsUp className="w-4 h-4" />
-                        {selectedProject.statistics?.likes || 0} likes
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Add Comment */}
-                  <div className="mb-4 sm:mb-6">
-                    <div className="flex gap-3">
-                      <img
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
-                        alt="Your avatar"
-                        className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <textarea
-                          value={commentText}
-                          onChange={(e) => setCommentText(e.target.value)}
-                          placeholder="Add a comment..."
-                          className="w-full p-2 sm:p-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 resize-none focus:outline-none focus:border-ai-primary text-sm sm:text-base"
-                          rows="3"
-                        />
-                        <div className="flex justify-end mt-2">
-                          <button
-                            onClick={handleAddComment}
-                            disabled={!commentText.trim()}
-                            className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-gradient-primary rounded-lg text-white text-xs sm:text-sm font-medium hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                          >
-                            <Send className="w-3 h-3 sm:w-4 sm:h-4" />
-                            <span className="hidden sm:inline">Post Comment</span>
-                            <span className="sm:hidden">Post</span>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Comments List */}
-                  <div className="space-y-3 sm:space-y-4">
-                    {selectedProject.statistics?.comments?.map((comment) => (
-                      <div key={comment._id} className="flex gap-2 sm:gap-3">
-                        <img
-                          src={comment.avatar}
-                          alt={comment.user}
-                          className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1">
-                            <span className="text-white font-medium text-xs sm:text-sm">{comment.user}</span>
-                            <span className="text-gray-500 text-xs">{formatDate(comment.createdAt)}</span>
-                          </div>
-                          <p className="text-gray-300 text-xs sm:text-sm break-words">{comment.text}</p>
-                        </div>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>

@@ -2,39 +2,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Star, Quote, User, Building, Globe, Smartphone, Brain, Server, Database, Code, Zap, X, Calendar, Loader2 } from "lucide-react";
 import { useState } from "react";
 import useTestimonials from "../hooks/useTestimonials";
+import { useTheme } from "../contexts/ThemeContext";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Testimonials = () => {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
 
   // Use the hook to fetch real data
   const { loading, error, testimonials } = useTestimonials();
-
-  const stats = [
-    {
-      value: "100%",
-      label: "Client Satisfaction",
-      icon: Star,
-      color: "text-ai-primary"
-    },
-    {
-      value: "50+",
-      label: "Projects Completed",
-      icon: Building,
-      color: "text-ai-secondary"
-    },
-    {
-      value: "99.9%",
-      label: "Uptime SLA",
-      icon: Globe,
-      color: "text-ai-accent"
-    },
-    {
-      value: "24/7",
-      label: "Support Available",
-      icon: Smartphone,
-      color: "text-ai-success"
-    }
-  ];
 
   const closePopover = () => {
     setSelectedTestimonial(null);
@@ -104,6 +79,8 @@ const Testimonials = () => {
     return message.length > 150 ? message.substring(0, 150) + "..." : message;
   };
 
+  const { isDark } = useTheme()
+
   // Loading state
   if (loading) {
     return (
@@ -111,15 +88,12 @@ const Testimonials = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center">
             <div className="flex items-center justify-center mb-8">
-              <Loader2 className="w-8 h-8 text-ai-primary animate-spin" />
+              <LoadingSpinner text="none" showText="false" className="w-8 h-8 text-ai-primary animate-spin" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-grey-200' : 'text-grey-700'} mb-4`}>
               Loading <span className="text-gradient-ai">Testimonials</span>
             </h2>
-            <p className="text-xl text-gray-300">
-              Fetching client testimonials from the backend...
-            </p>
-          </div>
+          </div> 
         </div>
       </section>
     );
@@ -164,10 +138,10 @@ const Testimonials = () => {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'} mb-4`}>
             Client <span className="text-gradient-ai">Testimonials</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className={`text-xl ${isDark ? 'text-gray-300' : 'text-gray-600'} max-w-3xl mx-auto`}>
             Hear from clients who have experienced the quality and professionalism of my work
           </p>
         </motion.div>
@@ -216,7 +190,7 @@ const Testimonials = () => {
                     </div>
 
                     {/* Content */}
-                    <p className="text-gray-300 text-sm leading-relaxed mb-6 line-clamp-4">
+                    <p className={`${ isDark ? 'text-gray-300' : 'text-grey-600'} text-sm leading-relaxed mb-6 line-clamp-4`}>
                       "{getShortMessage(testimonial.message || '')}"
                     </p>
 
@@ -228,8 +202,8 @@ const Testimonials = () => {
                         className="w-12 h-12 rounded-full object-cover border-2 border-white/20"
                       />
                       <div className="flex-1">
-                        <h4 className="text-white font-semibold text-sm">{testimonial.clientName || 'Anonymous'}</h4>
-                        <p className="text-gray-400 text-xs capitalize">{testimonial.clientRole || 'Client'}</p>
+                        <h4 className={`${isDark ? 'text-gray-200' : 'text-gray-600'} font-semibold text-sm`}>{testimonial.clientName || 'Anonymous'}</h4>
+                        <p className={`${ isDark ? 'text-gray-400' : 'text-gray-400'} text-xs capitalize`}>{testimonial.clientRole || 'Client'}</p>
                         <p className="text-ai-primary text-xs font-medium">{testimonial.project || 'Project'}</p>
                       </div>
                     </div>

@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import {
   Code, Brain, Database, Cloud, Smartphone, Globe,
-  Zap, Shield, Palette, Cpu, Network, Lock
+  Zap, Shield, Cpu, Network, Lock
 } from "lucide-react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const Skills = () => {
+  const { isDark } = useTheme()
   const skillCategories = [
     {
       title: "Frontend Development",
@@ -110,10 +112,10 @@ const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'} mb-4`}>
             Skills & <span className="text-gradient-ai">Technologies</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className={`text-xl ${isDark ? 'text-gray-300' : 'text-gray-600' } max-w-3xl mx-auto`}>
             A comprehensive toolkit of modern technologies and frameworks I use to build intelligent solutions.
           </p>
         </motion.div>
@@ -134,7 +136,7 @@ const Skills = () => {
                 <div className={`p-3 rounded-lg ${category.bgColor}`}>
                   <category.icon className={`w-6 h-6 ${category.color}`} />
                 </div>
-                <h3 className="text-xl font-bold text-white">{category.title}</h3>
+                <h3 className={`text-xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-800'}`}>{category.title}</h3>
               </div>
 
               <div className="space-y-4">
@@ -147,16 +149,16 @@ const Skills = () => {
                     viewport={{ once: true }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-300 font-medium">{skill.name}</span>
+                      <span className={`${ isDark ? 'text-gray-300' : 'text-gray-600'} font-medium`}>{skill.name}</span>
                       <span className="text-white font-bold">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-700 rounded-full h-2">
+                    <div className={`w-full ${isDark ? 'bg-gray-700' : 'bg-gray-400'} rounded-full h-2`}>
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: skillIndex * 0.1 }}
                         viewport={{ once: true }}
-                        className={`h-2 rounded-full ${category.color.replace('text-', 'bg-')}`}
+                        className={`h-2 rounded-full ${ isDark ? 'bg-gray-500' : 'bg-gradient-primary'}`}
                       />
                     </div>
                   </motion.div>
@@ -174,7 +176,7 @@ const Skills = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h3 className="text-3xl font-bold text-white mb-8">
+          <h3 className={`text-3xl font-bold ${isDark ? 'text-gray-200' : 'text-gray-700'} mb-8`}>
             Technologies I <span className="text-gradient-ai">Work With</span>
           </h3>
         </motion.div>
@@ -193,7 +195,7 @@ const Skills = () => {
               <div className={`w-12 h-12 mx-auto mb-4 p-3 rounded-lg bg-white/10 group-hover:bg-white/20 transition-colors duration-300`}>
                 <tech.icon className={`w-full h-full ${tech.color}`} />
               </div>
-              <h4 className="text-white font-medium text-sm">{tech.name}</h4>
+              <h4 className={`${isDark ? 'text-gray-300' : 'text-gray-600'} font-medium text-sm`}>{tech.name}</h4>
             </motion.div>
           ))}
         </div>

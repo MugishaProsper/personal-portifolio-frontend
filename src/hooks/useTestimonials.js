@@ -1,64 +1,29 @@
-import { useEffect, useState, useCallback } from "react"
-import { apiMethods } from "../lib/apiClient"
+import { useEffect, useState } from "react"
+import apiClient from "../lib/apiClient";
 
 const useTestimonials = () => {
   const [loading, setLoading] = useState(false);
   const [testimonials, setTestimonials] = useState([]);
-  const [error, setError] = useState(null);
-  const [retryCount, setRetryCount] = useState(0);
+  const [error, setError] = useState("");
 
-  const fetchTestimonials = useCallback(async (showLoading = true) => {
-    if (showLoading) setLoading(true);
-    setError(null);
-    
-    try {
-      const response = await apiMethods.get("/testimonials", {
-        useCache: true // Enable caching for testimonials
-      });
-      
-      const testimonialsData = response.data?.testimonials || [];
-      setTestimonials(testimonialsData);
-      setRetryCount(0);
-      
-      console.log(`💬 Loaded ${testimonialsData.length} testimonials`);
-    } catch (error) {
-      console.error('Failed to fetch testimonials:', error);
-      setError({
-        message: error.userMessage || 'Failed to load testimonials',
-        canRetry: true,
-        originalError: error
-      });
-    } finally {
-      if (showLoading) setLoading(false);
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      setLoading(true)
+      try {
+        const res = await apiClient.get("/testimonials");
+        const testimonials = res.data.testimonials;
+        setTestimonials(testimonials)
+      } catch (error) {
+        setError(error);
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
     }
+    fetchTestimonials()
   }, []);
 
-  // Initial fetch
-  useEffect(() => {
-    fetchTestimonials();
-  }, [fetchTestimonials]);
-
-  // Retry mechanism
-  const retry = useCallback(() => {
-    setRetryCount(prev => prev + 1);
-    fetchTestimonials();
-  }, [fetchTestimonials]);
-
-  // Refresh testimonials (bypass cache)
-  const refresh = useCallback(async () => {
-    apiMethods.clearCache('/testimonials');
-    await fetchTestimonials();
-  }, [fetchTestimonials]);
-
-  return {
-    loading,
-    error,
-    testimonials,
-    retryCount,
-    retry,
-    refresh,
-    hasTestimonials: testimonials.length > 0
-  };
+  return { loading, error, testimonials }
 };
 
 export default useTestimonials
